@@ -61,10 +61,9 @@ A form-based web application that demonstrates all three JavaScript embedding me
 
 **Key Code Concepts:**
 ```js
-// Template literal (External script)
 const greet = `Welcome, ${name}! Glad to see you.`;
 
-// Console methods
+
 console.log('External script loaded');
 console.warn('This demonstrates console.warn');
 console.info('Internal script: page is loading');
