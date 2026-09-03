@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Students Marks Management System</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<main class="app-shell">
+		<header class="header">
+			<p class="eyebrow">JavaScript Practical 5 / Case Study</p>
+			<h1>Students Marks<br><em>Management System</em></h1>
+			<p class="description">Store student records as objects and instantly identify the highest and lowest marks in the class.</p>
+		</header>
+
+		<section class="entry-section" aria-labelledby="entry-heading">
+			<div class="section-title">
+				<p class="eyebrow">Add record</p>
+				<h2 id="entry-heading">Enter student marks</h2>
+			</div>
+			<form id="studentForm">
+				<div class="input-group">
+					<label for="studentName">Student name</label>
+					<input id="studentName" type="text" placeholder="Enter name" required>
+				</div>
+				<div class="input-group marks-input">
+					<label for="studentMarks">Marks <span>(0–100)</span></label>
+					<input id="studentMarks" type="number" min="0" max="100" step="1" placeholder="00" required>
+				</div>
+				<button type="submit">Add student <span aria-hidden="true">+</span></button>
+			</form>
+			<p id="message" class="message" role="alert"></p>
+		</section>
+
+		<section class="dashboard" aria-labelledby="records-heading">
+			<div class="dashboard-heading">
+				<div><p class="eyebrow">Live class data</p><h2 id="records-heading">Student records</h2></div>
+				<span id="studentCount" class="count">0 students</span>
+			</div>
+			<div class="table-wrap">
+				<table>
+					<thead><tr><th>#</th><th>Student</th><th>Marks</th><th>Performance</th></tr></thead>
+					<tbody id="studentTable"><tr class="empty-row"><td colspan="4">No student records yet.</td></tr></tbody>
+				</table>
+			</div>
+		</section>
+
+		<section class="results" aria-labelledby="results-heading">
+			<div class="results-heading"><p class="eyebrow">Array methods result</p><h2 id="results-heading">Class range</h2></div>
+			<div class="result-grid">
+				<article class="result-card minimum"><span>Minimum marks</span><strong id="minimumMarks">—</strong><small id="minimumStudent">Add records to calculate</small></article>
+				<article class="result-card maximum"><span>Maximum marks</span><strong id="maximumMarks">—</strong><small id="maximumStudent">Add records to calculate</small></article>
+			</div>
+		</section>
+	</main>
+	<script src="script.js"></script>
+</body>
+</html>

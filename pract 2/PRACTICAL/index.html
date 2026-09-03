@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practical 2 | JavaScript Fundamentals</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="page-shell">
+        <header class="page-header">
+            <p class="eyebrow">JavaScript Lab / Practical 02</p>
+            <h1>Billing calculator.</h1>
+            <p class="intro">Create a quick customer bill with item quantity, subtotal, GST, and total payable.</p>
+        </header>
+
+        <section class="billing-panel" aria-labelledby="billing-heading">
+            <div class="section-heading">
+                <div>
+                    <h2 id="billing-heading">Billing calculator</h2>
+                </div>
+                <p class="tax-note">GST rate: 18%</p>
+            </div>
+            <form id="billingForm" class="billing-form">
+                <div class="field"><label for="customerName">Customer name</label><input id="customerName" type="text" placeholder="e.g. Aditi Sharma" required></div>
+                <div class="item-row">
+                    <div class="field"><label for="itemName">Item</label><input id="itemName" type="text" placeholder="e.g. Notebook" required></div>
+                    <div class="field"><label for="price">Price (₹)</label><input id="price" type="number" min="0" step="0.01" placeholder="0.00" required></div>
+                    <div class="field"><label for="quantity">Quantity</label><input id="quantity" type="number" min="1" step="1" value="1" required></div>
+                </div>
+                <button class="primary-button" type="submit">Calculate bill <span aria-hidden="true">→</span></button>
+                <p class="form-message" id="formMessage" role="alert"></p>
+            </form>
+            <div class="receipt" id="receipt" aria-live="polite" aria-label="Bill summary">
+                <div class="receipt-placeholder">Your calculated bill will appear here.</div>
+            </div>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>

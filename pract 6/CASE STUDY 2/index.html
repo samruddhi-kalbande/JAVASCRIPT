@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Information Extractor</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="container">
+
+        <header class="header">
+            <h1>Student Information Extractor</h1>
+            <p>Regular Expression Based Information Extraction</p>
+        </header>
+
+        <section class="input-section">
+
+            <label for="inputText">Student Details</label>
+
+            <textarea id="inputText" placeholder="Enter student information here..."> </textarea>
+
+            <button type="button" onclick="processText()">
+                Extract Information
+            </button>
+
+        </section>
+
+        <section id="result" class="result"></section>
+
+        <footer>
+            <p>Student Information Extractor | Regular Expressions</p>
+        </footer>
+
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

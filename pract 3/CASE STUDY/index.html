@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Pract 3 - Grading System</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="hero">
+    <h1>Password Verification</h1>
+    <p class="subtitle">Secure Registration Portal</p>
+  </header>
+
+  <main class="card">
+    <h2 class="card-title">Password Verification</h2>
+    <form id="pwdForm">
+      <label class="field">Enter Username
+        <input id="username" placeholder="Enter username">
+      </label>
+      <label class="field">Enter Password
+        <div style="position:relative">
+          <input id="password" type="password" placeholder="Enter strong password">
+        </div>
+      </label>
+
+      <div class="strength">
+        <div class="strength-bar" id="strengthBar"></div>
+        <div class="strength-text" id="strengthText">Too Weak</div>
+      </div>
+
+      <div class="requirements">
+        <ul>
+          <li>At least 8 characters long</li>
+          <li>At least one uppercase letter (A-Z)</li>
+          <li>At least one lowercase letter (a-z)</li>
+          <li>At least one digit (0-9)</li>
+          <li>At least one special character (@,$,!,%,*,?,&,)</li>
+        </ul>
+      </div>
+
+      <label class="field">Confirm Password
+        <input id="confirm" type="password" placeholder="Re-enter password">
+      </label>
+
+      <button class="primary" id="register" type="button">Register User</button>
+    </form>
+
+    <hr>
+    <div class="dev">
+      <p>Developed By</p>
+      <p class="dev-name">Samruddhi Kalbande</p>
+      <p class="prn">PRN : 24070521278</p>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Pract 4 - Palindrome Checker</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="hero">
+    <h1>Vehicle Validator Portal</h1>
+    <p class="subtitle">JavaScript Experiment - 4</p>
+  </header>
+
+  <main class="card">
+    <h2 class="card-title">Vehicle Registration Validator</h2>
+    <p>Verify Indian vehicle registration formats against official schema rules.</p>
+
+    <label class="field">VEHICLE REGISTRATION NUMBER
+      <input id="reg" placeholder="e.g., MH12AB1234">
+    </label>
+    <p class="hint">Enter 10-character code without spaces or hyphens</p>
+
+    <div class="requirements">
+      <ul>
+        <li>Registration number is not empty</li>
+        <li>Length is exactly 10 characters</li>
+        <li>First 2 characters are uppercase letters (State Code)</li>
+        <li>Next 2 characters are digits (District Code)</li>
+        <li>Next 2 characters are uppercase letters (Series)</li>
+        <li>Last 4 characters are digits (Vehicle Number)</li>
+      </ul>
+    </div>
+
+    <button class="primary" id="validate">Validate Registration</button>
+
+    <hr>
+    <div class="dev">
+      <p>Developed By</p>
+      <p class="dev-name">Samruddhi Kalbande</p>
+      <p class="prn">PRN : 24070521278</p>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

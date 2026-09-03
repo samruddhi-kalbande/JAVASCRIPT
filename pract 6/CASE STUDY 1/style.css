@@ -1,0 +1,294 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #fff0f6, #ffffff);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    color: #3a2630;
+}
+
+.login-card,
+.register-card {
+    background: #ffffff;
+    border-radius: 18px;
+    box-shadow: 0 15px 40px rgba(214, 51, 132, 0.16);
+}
+
+/* LOGIN */
+
+.login-card {
+    width: 470px;
+    padding: 30px 26px;
+}
+
+.login-card h1,
+.register-card h1 {
+    font-size: 25px;
+    color: #3a2630;
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    color: #7b8794;
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+
+.line {
+    height: 1px;
+    background: #f3cddd;
+    margin-bottom: 22px;
+}
+
+label {
+    display: block;
+    font-size: 13px;
+    font-weight: bold;
+    color: #3a2630;
+    margin-bottom: 7px;
+}
+
+.input-box {
+    height: 47px;
+    border: 1px solid #f1c4d5;
+    background: #ffffff;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    padding: 0 13px;
+    margin-bottom: 18px;
+    transition: 0.2s;
+}
+
+.input-box:focus-within {
+    border-color: #d63384;
+    box-shadow: 0 0 0 3px rgba(214, 51, 132, 0.1);
+}
+
+.input-box span {
+    width: 30px;
+    color: #d63384;
+    font-size: 17px;
+}
+
+.input-box input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 15px;
+    color: #3a2630;
+}
+
+.input-box input::placeholder {
+    color: #aa8795;
+}
+
+.login-btn,
+.register-btn,
+.continue-btn {
+    width: 100%;
+    height: 47px;
+    border: none;
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.login-btn {
+    background: #d63384;
+}
+
+.login-btn:hover,
+.continue-btn:hover {
+    background: #b02a6b;
+}
+
+.or {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #a88794;
+    margin: 18px 0;
+}
+
+.or::before,
+.or::after {
+    content: "";
+    height: 1px;
+    background: #f3d8e3;
+    flex: 1;
+}
+
+.register-btn {
+    background: #ffffff;
+    color: #d63384;
+    border: 2px solid #d63384;
+}
+
+.register-btn:hover {
+    background: #fff0f6;
+}
+
+.demo {
+    text-align: center;
+    margin-top: 18px;
+    font-size: 13px;
+    color: #987c89;
+}
+
+.demo strong {
+    color: #d63384;
+}
+
+#loginMessage,
+#registerMessage {
+    text-align: center;
+    margin-top: 14px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+/* REGISTER */
+
+.register-card {
+    width: 480px;
+    padding: 30px 27px;
+}
+
+.steps {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    margin-bottom: 28px;
+}
+
+.steps::before {
+    content: "";
+    position: absolute;
+    top: 16px;
+    left: 30px;
+    right: 30px;
+    height: 2px;
+    background: #f3d8e3;
+    z-index: 0;
+}
+
+.step {
+    width: 33.33%;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.circle {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #f6dce7;
+    color: #9b7182;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.step.active .circle {
+    background: #d63384;
+    color: #ffffff;
+}
+
+.step span {
+    display: block;
+    margin-top: 7px;
+    font-size: 12px;
+    color: #806875;
+}
+
+.step.active span {
+    color: #d63384;
+    font-weight: bold;
+}
+
+.name-row {
+    display: flex;
+    gap: 14px;
+}
+
+.field {
+    width: 50%;
+}
+
+.register-card .input-box {
+    margin-bottom: 7px;
+}
+
+.email-rules {
+    background: #fff2f7;
+    border: 1px solid #f2cfde;
+    border-radius: 8px;
+    padding: 10px 13px;
+    margin-bottom: 17px;
+}
+
+.email-rules p {
+    font-size: 12px;
+    color: #876f7b;
+    line-height: 1.55;
+}
+
+.continue-btn {
+    background: #d63384;
+}
+
+.already {
+    text-align: center;
+    color: #987b88;
+    font-size: 13px;
+    margin-top: 18px;
+}
+
+.already a {
+    color: #d63384;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.already a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 550px) {
+
+    body {
+        padding: 15px;
+    }
+
+    .login-card,
+    .register-card {
+        width: 100%;
+        padding: 25px 20px;
+    }
+
+    .name-row {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .field {
+        width: 100%;
+    }
+}

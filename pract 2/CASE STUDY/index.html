@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopEasy - Online Shopping</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>ShopEasy</h1>
+
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">Products</a>
+        <a href="#">Offers</a>
+        <a href="#">Contact</a>
+    </nav>
+</header>
+
+<section class="banner">
+    <h2>Welcome to ShopEasy</h2>
+    <p>Best Deals | Fast Delivery | Great Discounts</p>
+</section>
+
+<section class="customer-details">
+    <h2>Customer Details</h2>
+
+    <label for="customerName">Customer Name</label>
+
+    <input
+        type="text"
+        id="customerName"
+        placeholder="Enter your name">
+</section>
+
+<main>
+
+<section class="products">
+
+    <article class="card">
+        <img src="https://via.placeholder.com/200" alt="Laptop">
+        <h3>Laptop</h3>
+        <p>Price : ₹50000</p>
+
+        Quantity
+        <input type="number" id="lapQty" value="0" min="0">
+    </article>
+
+    <article class="card">
+        <img src="https://via.placeholder.com/200" alt="Mobile">
+        <h3>Mobile</h3>
+        <p>Price : ₹20000</p>
+
+        Quantity
+        <input type="number" id="mobQty" value="0" min="0">
+    </article>
+
+    <article class="card">
+        <img src="https://via.placeholder.com/200" alt="Headphones">
+        <h3>Headphones</h3>
+        <p>Price : ₹2000</p>
+
+        Quantity
+        <input type="number" id="headQty" value="0" min="0">
+    </article>
+
+</section>
+
+</main>
+
+<div class="center">
+    <button onclick="calculateBill()">Generate Bill</button>
+</div>
+
+<section id="bill">
+
+<h2>Bill Details</h2>
+
+<p id="customer"></p>
+
+<p id="membership"></p>
+
+<p id="items"></p>
+
+<h3 id="total"></h3>
+
+</section>
+
+<footer>
+    <p>Thank You for Visiting!</p>
+    <p class="made-by">Made by SAMRUDDHI KALBANDE<br>PRN: 24070521278</p>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>

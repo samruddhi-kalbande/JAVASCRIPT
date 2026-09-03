@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="register-card">
+
+        <div class="steps">
+
+            <div class="step active">
+                <div class="circle">1</div>
+                <span>Details</span>
+            </div>
+
+            <div class="step">
+                <div class="circle">2</div>
+                <span>Email OTP</span>
+            </div>
+
+            <div class="step">
+                <div class="circle">3</div>
+                <span>Password</span>
+            </div>
+
+        </div>
+
+        <h1>Registration Form</h1>
+
+        <p class="subtitle">
+            Enter your user information and valid email
+        </p>
+
+        <div class="line"></div>
+
+        <form id="registerForm">
+
+            <div class="name-row">
+
+                <div class="field">
+                    <label for="firstName">First Name</label>
+
+                    <div class="input-box">
+                        <span>👤</span>
+                        <input
+                            type="text"
+                            id="firstName"
+                            placeholder="First name"
+                            required
+                        >
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label for="surname">Surname</label>
+
+                    <div class="input-box">
+                        <span>👤</span>
+                        <input
+                            type="text"
+                            id="surname"
+                            placeholder="Surname"
+                            required
+                        >
+                    </div>
+                </div>
+
+            </div>
+
+            <label for="registerEmail">
+                Email Address (Main Verification)
+            </label>
+
+            <div class="input-box">
+                <span>✉</span>
+                <input
+                    type="email"
+                    id="registerEmail"
+                    placeholder="user@domain.com"
+                    required
+                >
+            </div>
+
+            <div class="email-rules">
+
+                <p>• Contains username and '@' symbol</p>
+                <p>• Contains domain (e.g. gmail, yahoo)</p>
+                <p>• Contains extension (e.g. .com, .edu, .in)</p>
+
+            </div>
+
+            <button type="submit" class="continue-btn">
+                Continue to Email OTP →
+            </button>
+
+        </form>
+
+        <p class="already">
+            Already registered?
+            <a href="index.html">Log In here</a>
+        </p>
+
+        <p id="registerMessage"></p>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
