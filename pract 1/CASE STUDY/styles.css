@@ -1,0 +1,23 @@
+/* Shared pink-card layout used by practice pages */
+body{font-family:Segoe UI,Arial,sans-serif;margin:0;min-height:100vh;background:linear-gradient(135deg,#ff9ccf 0%,#ff5da2 100%);color:#222}
+.page{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:48px 16px}
+.hero{max-width:700px;text-align:center;margin-bottom:18px;color:#fff}
+.hero h1{margin:8px 0 4px;font-size:28px;color:#fff}
+.hero .subtitle{color:rgba(255,255,255,0.95);margin-bottom:18px}
+
+.card{width:100%;max-width:520px;background:#fff;border-radius:14px;padding:28px;box-shadow:0 8px 30px rgba(0,0,0,0.12);}
+.card-title{color:#d81b60;margin:0 0 12px;font-size:20px;text-align:center}
+.field{display:block;text-align:left;font-weight:600;color:#333;margin-bottom:12px}
+.field input,.field textarea{display:block;width:100%;padding:12px;border:1px solid #f2c7d6;border-radius:8px;margin-top:6px}
+.field textarea{min-height:70px}
+.primary{display:block;width:100%;padding:12px;background:#ff3b8b;color:#fff;border:none;border-radius:8px;font-weight:700;margin-top:8px;cursor:pointer}
+
+.dev{margin-top:18px;text-align:center;color:#d81b60}
+.dev p{margin:6px 0}
+.dev-name{font-weight:700}
+.prn{font-size:13px;color:#555}
+
+@media(max-width:520px){
+	.card{padding:18px}
+	.hero h1{font-size:22px}
+}

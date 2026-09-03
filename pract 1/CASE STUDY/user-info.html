@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome to SIT! </title>
+    <style>
+        html, body {
+            margin: 0;
+            min-height: 100vh;
+        }
+
+        body {
+            background-color: rgb(250, 45, 158);
+            background-image: url('sit.jpg');
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 520px;
+            background: rgba(243, 133, 206, 0.815);
+            border-radius: 22px;
+            box-shadow: 0 18px 40px rgba(97, 72, 72, 0.22);
+            padding: 30px 28px;
+            color: #333;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container h1 {
+            margin-top: 0;
+            font-size: 26px;
+            text-align: center;
+            color: #333;
+        }
+
+        .subtitle {
+            text-align: center;
+            margin: 0 0 24px;
+            color: #555;
+        }
+
+        label {
+            display: block;
+            margin-top: 18px;
+            margin-bottom: 6px;
+            color: #fff;
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 14px;
+            border-radius: 12px;
+            border: 1px solid rgba(0,0,0,0.12);
+            box-sizing: border-box;
+            font-size: 15px;
+            background: rgba(255,255,255,0.95);
+            color: #333;
+            position: relative;
+            z-index: 1;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px 16px;
+            margin-top: 22px;
+            border: none;
+            border-radius: 12px;
+            background: #161100;
+            color: #f7f2f2;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.2s ease, transform 0.2s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        button:hover {
+            background: #583f8c;
+            transform: translateY(-1px);
+        }
+
+        #output {
+            margin-top: 24px;
+            color: #333;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #ddd;
+            margin: 24px 0;
+        }
+
+        .corner-text {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            background: #2563eb;
+            color: white;
+            padding: 0.6rem 0.9rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+        }
+
+        .made-by {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #4b5563;
+        }
+    </style>
+
+    <script>
+        function showWelcome() {
+            let StudentName = document.getElementById("name").value;
+            let StudentAge = document.getElementById("age").value;
+            let StudentPRN = document.getElementById("prn").value;
+            let StudentContact = document.getElementById("contact").value;
+            let StudentEmail = document.getElementById("email").value;
+            let StudentAddress = document.getElementById("address").value;
+
+            document.getElementById("output").innerHTML =
+                "<h2>Welcome, " + StudentName + "!</h2>" +
+                "<p>Your age is " + StudentAge + ".</p>" +
+                "<p>Your PRN is " + StudentPRN + ".</p>" +
+                "<p>Your contact number is " + StudentContact + ".</p>" +
+                "<p>Your email is " + StudentEmail + ".</p>" +
+                "<p>Your address is " + StudentAddress + ".</p>";
+
+            console.log("User Name: " + StudentName);
+            console.info("User Age: " + StudentAge);
+            console.warn("This is a warning message");
+            console.error("This is an error message");
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Welcome to SIT NAGPUR</h1>
+        <p class="subtitle">Student Information</p>
+
+        <label>Enter Name:</label>
+        <input type="text" id="name" placeholder="Enter Name">
+
+        <label>Enter Age:</label>
+        <input type="number" id="age" placeholder="Enter Age">
+
+        <label>Enter PRN:</label>
+        <input type="text" id="prn" placeholder="Enter PRN">
+
+        <label>Enter Contact Number:</label>
+        <input type="text" id="contact" placeholder="Enter Contact Number">
+
+        <label>Enter Email:</label>
+        <input type="email" id="email" placeholder="Enter Email">
+
+        <label>Enter Address:</label>
+        <input type="text" id="address" placeholder="Enter Address">
+
+        <button onclick="showWelcome();greet();">Submit</button>
+
+        <hr>
+
+        <div id="output"></div>
+        <div class="made-by">Made by SAMRUDDHI KALBANDE<br>PRN: 24070521278</div>
+    </div>
+
+    <script src="function.js"></script>
+</body>
+</html>

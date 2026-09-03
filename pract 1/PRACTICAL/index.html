@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Pract 1 - JS: inline, internal, external</title>
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    // Internal script: runs on load
+    console.info('Internal script: page is loading');
+    function internalWelcome() {
+      const el = document.getElementById('internal-msg');
+      el.textContent = 'Hello from the internal script!';
+      console.log('internalWelcome called');
+    }
+  </script>
+</head>
+<body onload="internalWelcome()">
+  <div class="page">
+    <header class="hero">
+      <h1>Welcome to SIT NAGPUR</h1>
+      <p class="subtitle">Student Information Portal</p>
+    </header>
+
+    <main class="card">
+      <h2 class="card-title">Enter Details</h2>
+      <p id="internal-msg" style="display:none"></p>
+      <form id="studentForm">
+        <label class="field">Enter Name
+          <input id="name" placeholder="Enter Name">
+        </label>
+        <label class="field">Enter Age
+          <input id="age" type="number" placeholder="Enter Age">
+        </label>
+        <label class="field">Enter PRN
+          <input id="prn" placeholder="Enter PRN">
+        </label>
+        <label class="field">Enter Contact Number
+          <input id="contact" placeholder="Enter Contact Number">
+        </label>
+        <label class="field">Enter Email
+          <input id="email" type="email" placeholder="Enter Email">
+        </label>
+        <label class="field">Enter Address
+          <textarea id="address" placeholder="Enter Address"></textarea>
+        </label>
+
+        <button class="primary" id="submitStudent" type="button">Submit</button>
+      </form>
+
+      <hr>
+      <div class="dev">
+        <p>Developed By</p>
+        <p class="dev-name">Samruddhi Kalbande</p>
+        <p class="prn">PRN : 24070521278</p>
+      </div>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
