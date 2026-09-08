@@ -1,163 +1,223 @@
-# 🛒 Practical 5 — Arrays & Array Methods
+# Experiment No. 5
 
-> **JavaScript Lab · SIT Nagpur · Samruddhi Kalbande · PRN: 24070521278**
-
----
-
-## 📌 Aim
-
-To understand and demonstrate JavaScript **Arrays** and built-in **array methods** (`forEach`, `map`, `filter`, `reduce`, `push`) through a real-world **Shopping Cart Calculator** and a **Students Marks Management System**.
+**Student Name:** Samruddhi Kalbande  
+**PRN:** 24070521278  
+**File Path:** `pract 5/PRACTICAL/index.html`
 
 ---
 
-## 🎯 Objectives
+## Experiment Title
 
-- Create and manage arrays of objects
-- Use `push()` to add items to an array
-- Use `forEach()` to iterate over array items
-- Use `map()` to transform array data
-- Use `filter()` to extract items matching a condition
-- Use `reduce()` to compute aggregate totals
-- Apply discount logic based on computed totals
-- Build interactive UI that reflects array state in real-time
+**Shopping Cart Calculator & JavaScript Array Methods**
 
 ---
 
-## 📁 Folder Structure
+## Software / Tools Required
 
-```
-pract 5/
-├── PRACTICAL/
-│   └── index.html      # Shopping Cart Calculator (self-contained)
-└── CASE STUDY/
-    ├── index.html      # Students Marks Management System
-    ├── script.js       # Array methods logic
-    └── style.css       # Modern dashboard styling
-```
+1. Visual Studio Code / Antigravity IDE
+2. Google Chrome (or modern web browser)
+3. HTML5
+4. CSS3
+5. JavaScript (ES6)
 
 ---
 
-## 💻 Programs
+## Experiment Program Code
 
-### 🔹 Practical — Shopping Cart Calculator
+### Task 5.a — Shopping Cart Interface and Product Collection
 
-**Files:** `PRACTICAL/index.html`
+**File:** `pract 5/PRACTICAL/index.html`
 
-An interactive shopping cart where users can add products dynamically and see the total bill with automatic discounts applied.
+The self-contained application renders an input panel (Product Name, Price, Quantity), an action button, an inventory table, order summary statistics, and filter lists.
 
-**Features:**
-- Add products with: Name, Price (₹), Quantity
-- Dynamic table rendering using `forEach()`
-- Automatic discount tiers based on total:
+```html
+<div class="container">
+    <h2>Shopping Cart Calculator</h2>
 
-| Total Amount | Discount |
-|-------------|----------|
-| ₹5,000 – ₹19,999 | 5% |
-| ₹20,000 – ₹49,999 | 10% |
-| ₹50,000+ | 20% |
+    <input type="text" id="name" placeholder="Product Name">
+    <input type="number" id="price" placeholder="Price">
+    <input type="number" id="qty" placeholder="Quantity">
 
-- Item summary list using `map()`
-- Expensive products list (price > ₹1000) using `filter()`
-- Total calculation using `reduce()`
+    <button onclick="addProduct()">Add Product</button>
 
-**Key Code Concepts:**
-```js
-let cart = []; // Array to store products
+    <table id="cartTable">
+        <tr>
+            <th>ID</th>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+        </tr>
+    </table>
 
-// push() — Add product object to array
-cart.push({ id: cart.length + 1, name, price, quantity });
+    <div class="result" id="result"></div>
 
-// forEach() — Display each item in table
-cart.forEach(function(item) {
-    table.innerHTML += `<tr><td>${item.name}</td><td>₹${item.price * item.quantity}</td></tr>`;
-});
+    <h3>Item Summary</h3>
+    <ul id="summary"></ul>
 
-// reduce() — Calculate total
-let total = cart.reduce(function(sum, item) {
-    return sum + (item.price * item.quantity);
-}, 0);
-
-// map() — Create item summary
-cart.map(function(item) {
-    summary.innerHTML += `<li>${item.name} : ₹${item.price * item.quantity}</li>`;
-});
-
-// filter() — Find expensive products
-let exp = cart.filter(function(item) {
-    return item.price > 1000;
-});
+    <h3>Expensive Products (Price > ₹1000)</h3>
+    <ul id="expensive"></ul>
+</div>
 ```
 
 ---
 
-### 🔹 Case Study — Students Marks Management System
+### Task 5.b — Array Manipulation using `push()`, `forEach()`, `reduce()`, `map()`, and `filter()`
 
-**Files:** `CASE STUDY/index.html`, `CASE STUDY/script.js`, `CASE STUDY/style.css`
+**File:** `pract 5/PRACTICAL/index.html`
 
-A dashboard to add student records (name + marks) as objects to an array, and instantly compute the **maximum** and **minimum** marks in the class.
+The application stores products as an array of objects and leverages built-in array methods to calculate totals, compute tiered percentage discounts, generate itemized summaries, and isolate expensive items.
 
-**Features:**
-- Add multiple student records (name + marks 0–100)
-- Dynamic table updating with `#` serial number and performance badge
-- Live count of total students
-- Identifies **Highest Marks** student using `Math.max()` + `reduce()`
-- Identifies **Lowest Marks** student using `Math.min()` + `reduce()`
-- Performance badge: Excellent (≥80), Good (≥60), Needs Improvement (<60)
+```javascript
+// Array to store cart products
+let cart = [];
 
-**Key Code Concepts:**
-```js
-let students = []; // Array of student objects
+function addProduct() {
+    let name = document.getElementById("name").value;
+    let price = parseFloat(document.getElementById("price").value);
+    let qty = parseInt(document.getElementById("qty").value);
 
-// Add student record
-students.push({ name: studentName, marks: studentMarks });
+    if (name === "" || isNaN(price) || isNaN(qty)) {
+        alert("Please enter all fields");
+        return;
+    }
 
-// find max marks using reduce
-const maxStudent = students.reduce((best, s) => s.marks > best.marks ? s : best);
-const minStudent = students.reduce((worst, s) => s.marks < worst.marks ? s : worst);
+    let product = { id: cart.length + 1, name: name, price: price, quantity: qty };
+    cart.push(product);
+    displayCart();
 
-// Performance badge using conditional
-function getPerformance(marks) {
-    if (marks >= 80) return "Excellent";
-    if (marks >= 60) return "Good";
-    return "Needs Improvement";
+    document.getElementById("name").value = "";
+    document.getElementById("price").value = "";
+    document.getElementById("qty").value = "";
+}
+
+function displayCart() {
+    let table = document.getElementById("cartTable");
+    table.innerHTML = `<tr><th>ID</th><th>Product</th><th>Price</th><th>Quantity</th><th>Total</th></tr>`;
+
+    // forEach() - Render rows
+    cart.forEach(function(item) {
+        table.innerHTML += `<tr><td>${item.id}</td><td>${item.name}</td><td>₹${item.price}</td><td>${item.quantity}</td><td>₹${item.price * item.quantity}</td></tr>`;
+    });
+
+    // reduce() - Aggregate total bill
+    let total = cart.reduce(function(sum, item) {
+        return sum + (item.price * item.quantity);
+    }, 0);
+
+    // Discount Tiers
+    let discount = 0;
+    if (total >= 50000) discount = total * 0.20;
+    else if (total >= 20000) discount = total * 0.10;
+    else if (total >= 5000) discount = total * 0.05;
+
+    let finalAmount = total - discount;
+    document.getElementById("result").innerHTML = `
+        <b>Total Amount:</b> ₹${total.toFixed(2)}<br>
+        <b>Discount:</b> ₹${discount.toFixed(2)}<br>
+        <b>Final Amount:</b> ₹${finalAmount.toFixed(2)}`;
+
+    // map() - Item summary
+    let summary = document.getElementById("summary");
+    summary.innerHTML = "";
+    cart.map(function(item) {
+        summary.innerHTML += `<li>${item.name} : ₹${item.price * item.quantity}</li>`;
+    });
+
+    // filter() - Expensive items (> ₹1000)
+    let expensive = document.getElementById("expensive");
+    expensive.innerHTML = "";
+    let exp = cart.filter(function(item) {
+        return item.price > 1000;
+    });
+    exp.forEach(function(item) {
+        expensive.innerHTML += `<li>${item.name}</li>`;
+    });
 }
 ```
 
 ---
 
-## 🔑 Key JavaScript Concepts
+## Output
 
-| Concept | Used In |
-|---------|---------|
-| Array literals `[]` | Both |
-| Object literals `{}` inside array | Both |
-| `push()` — add to array | Both |
-| `forEach()` — iterate | Practical |
-| `map()` — transform | Practical |
-| `filter()` — select subset | Practical |
-| `reduce()` — aggregate | Both |
-| `Math.max()` / `Math.min()` | Case Study |
-| `parseFloat()` / `parseInt()` | Both |
-| Dynamic table rendering | Both |
-| Input validation | Both |
-| Template literals | Both |
+1. **Item Append:** Adds dynamic items to the underlying array using `cart.push()`.
+2. **Table Iteration:** Employs `forEach()` to dynamically render and populate table rows.
+3. **Cart Aggregation:** `reduce()` computes the cumulative gross total across all rows.
+4. **Automated Discounts:** Determines applicable tier ($5\%$ for $\ge ₹5,000$, $10\%$ for $\ge ₹20,000$, $20\%$ for $\ge ₹50,000$).
+5. **Collection Mapping & Filtering:** `map()` projects line summaries, and `filter()` extracts items with unit price $> ₹1,000$.
 
 ---
 
-## 🖥️ How to Run
+## Screenshot
 
-1. Open `PRACTICAL/index.html` in any browser
-2. Enter a product name, price, and quantity → click **"Add Product"**
-3. Watch the cart table update with totals and discounts
-4. For Case Study: Open `CASE STUDY/index.html`, add student records and see min/max scores update live
+![Shopping Cart Calculator Output](PRACTICAL/output.png)
 
 ---
 
-## 👩‍💻 Developed By
+## Case Study
 
-| Field | Details |
-|-------|---------|
-| **Name** | Samruddhi Kalbande |
-| **PRN** | 24070521278 |
-| **Institute** | SIT Nagpur |
-| **Subject** | JavaScript Lab |
+### Case Study — Student Marks Management & Statistical Analyzer
+
+**File:** `pract 5/CASE STUDY/index.html`, `pract 5/CASE STUDY/script.js`
+
+A statistical dashboard managing student marks records inside an array, computing class size, assigning categorical performance ratings, and extracting minimum and maximum grades using `Math.min`, `Math.max`, and `.find()`.
+
+```javascript
+const students = [];
+
+studentForm.addEventListener("submit", (event) => {
+	event.preventDefault();
+	const name = document.getElementById("studentName").value.trim();
+	const marks = Number(document.getElementById("studentMarks").value);
+
+	if (!name || !Number.isInteger(marks) || marks < 0 || marks > 100) {
+		message.textContent = "Enter a student name and marks between 0 and 100.";
+		return;
+	}
+
+	students.push({ name, marks });
+	renderStudents();
+	updateRange();
+});
+
+function renderStudents() {
+	const table = document.getElementById("studentTable");
+	table.innerHTML = "";
+	students.forEach((student, index) => {
+		const row = document.createElement("tr");
+		const performance = student.marks >= 75 ? "Excellent" : student.marks >= 50 ? "Pass" : "Needs support";
+		row.innerHTML = `<td class="index">${String(index + 1).padStart(2, "0")}</td><td>${student.name}</td><td class="marks">${student.marks}</td><td><span class="performance">${performance}</span></td>`;
+		table.appendChild(row);
+	});
+}
+
+function updateRange() {
+	if (students.length === 0) return;
+	const marksList = students.map((student) => student.marks);
+	const minimum = Math.min(...marksList);
+	const maximum = Math.max(...marksList);
+	const minimumStudent = students.find((student) => student.marks === minimum);
+	const maximumStudent = students.find((student) => student.marks === maximum);
+
+	document.getElementById("minimumMarks").textContent = minimum;
+	document.getElementById("minimumStudent").textContent = minimumStudent.name;
+	document.getElementById("maximumMarks").textContent = maximum;
+	document.getElementById("maximumStudent").textContent = maximumStudent.name;
+}
+```
+
+### Case Study Output
+
+1. **Tabular Rendering with Badges:** Formats records into rows with zero-padded IDs (`01`, `02`) and performance badges (*Excellent*, *Pass*, *Needs support*).
+2. **Statistical Metric Extraction:** Transforms student objects via `.map()` into a numeric array, evaluating extremes through `Math.min(...)` and `Math.max(...)`.
+3. **Record Lookup:** Utilizes `.find()` to locate and display student names associated with lowest and highest marks.
+
+### Case Study Screenshot
+
+![Student Marks Management System Output](CASE STUDY/output.png)
+
+---
+
+## Result / Conclusion
+
+Experiment 5 was successfully implemented and verified. The practical and case study demonstrate real-world collection processing using JavaScript arrays, covering item insertion (`push`), iteration (`forEach`), data transformation (`map`), subset condition filtering (`filter`), cumulative reduction (`reduce`), spread operators (`...`), and search algorithms (`find`).

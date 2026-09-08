@@ -1,145 +1,195 @@
-# 🧾 Practical 2 — JavaScript Fundamentals: Variables, Operators & Data Types
+# Experiment No. 2
 
-> **JavaScript Lab · SIT Nagpur · Samruddhi Kalbande · PRN: 24070521278**
-
----
-
-## 📌 Aim
-
-To understand and apply JavaScript **variables**, **data types**, **operators**, and **arithmetic expressions** by building a real-world **Billing Calculator** with GST computation.
+**Student Name:** Samruddhi Kalbande  
+**PRN:** 24070521278  
+**File Path:** `pract 2/PRACTICAL/index.html`, `pract 2/PRACTICAL/script.js`
 
 ---
 
-## 🎯 Objectives
+## Experiment Title
 
-- Declare and use variables using `const` and `let`
-- Work with JavaScript **Number**, **String**, and **Boolean** data types
-- Apply **arithmetic operators** (+, -, *, /) in practical calculations
-- Use **destructuring assignment** to extract values from objects
-- Build a fully functional billing receipt with GST calculation
-- Implement form validation and user-friendly error feedback
+**Online Shopping Bill Calculator & JavaScript Fundamentals**
 
 ---
 
-## 📁 Folder Structure
+## Software / Tools Required
 
+1. Visual Studio Code / Antigravity IDE
+2. Google Chrome (or modern web browser)
+3. HTML5
+4. CSS3
+5. JavaScript (ES6)
+
+---
+
+## Experiment Program Code
+
+### Task 2.a — Product Entry Interface and Output Receipt Layout
+
+**File:** `pract 2/PRACTICAL/index.html`
+
+The HTML document renders an online shopping bill calculator with inputs for Customer Name, Item Name, Unit Price (₹), and Quantity, an action button to compute total amounts, and a live receipt summary container.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practical 2 | JavaScript Fundamentals</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="page-shell">
+        <header class="page-header">
+            <p class="eyebrow">JavaScript Lab / Practical 02</p>
+            <h1>Billing calculator.</h1>
+            <p class="intro">Create a quick customer bill with item quantity, subtotal, GST, and total payable.</p>
+        </header>
+
+        <section class="billing-panel" aria-labelledby="billing-heading">
+            <div class="section-heading">
+                <div>
+                    <h2 id="billing-heading">Billing calculator</h2>
+                </div>
+                <p class="tax-note">GST rate: 18%</p>
+            </div>
+            <form id="billingForm" class="billing-form">
+                <div class="field"><label for="customerName">Customer name</label><input id="customerName" type="text" placeholder="e.g. Aditi Sharma" required></div>
+                <div class="item-row">
+                    <div class="field"><label for="itemName">Item</label><input id="itemName" type="text" placeholder="e.g. Notebook" required></div>
+                    <div class="field"><label for="price">Price (₹)</label><input id="price" type="number" min="0" step="0.01" placeholder="0.00" required></div>
+                    <div class="field"><label for="quantity">Quantity</label><input id="quantity" type="number" min="1" step="1" value="1" required></div>
+                </div>
+                <button class="primary-button" type="submit">Calculate bill <span aria-hidden="true">→</span></button>
+                <p class="form-message" id="formMessage" role="alert"></p>
+            </form>
+            <div class="receipt" id="receipt" aria-live="polite" aria-label="Bill summary">
+                <div class="receipt-placeholder">Your calculated bill will appear here.</div>
+            </div>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
 ```
-pract 2/
-├── PRACTICAL/
-│   ├── index.html      # Billing Calculator UI
-│   ├── script.js       # Billing logic with JS fundamentals
-│   └── style.css       # Modern styling
-└── CASE STUDY/
-    ├── index.html      # ShopEasy — Online Shopping Billing
-    ├── script.js       # Shopping cart bill generator
-    └── style.css       # E-commerce styling
-```
 
 ---
 
-## 💻 Programs
+### Task 2.b — Numerical Parsing, GST Computation & Object Destructuring
 
-### 🔹 Practical — Billing Calculator
+**File:** `pract 2/PRACTICAL/script.js`
 
-**Files:** `PRACTICAL/index.html`, `PRACTICAL/script.js`, `PRACTICAL/style.css`
+The JavaScript script handles form submission, performs rigorous type checking (`Number.isFinite`, `Number.isInteger`), computes subtotal, applies an 18% GST calculation, packages the transaction into an object, and extracts summary fields via destructuring.
 
-An interactive billing calculator that computes subtotal, GST, and the final payable amount for a customer order.
-
-**Features:**
-- Input: Customer Name, Item Name, Price (₹), Quantity
-- Calculates: Subtotal, GST @ 18%, Total Payable
-- Displays a formatted receipt card
-- Input validation with error messaging
-- Uses ES6 arrow functions and destructuring
-
-**Key Code Concepts:**
-```js
-// Constants and variables
+```javascript
 const taxRate = 0.18;
+
 const formatCurrency = (amount) => `₹${amount.toFixed(2)}`;
 
-// Arithmetic operations
-const subtotal = price * quantity;
-const gst = subtotal * taxRate;
-const total = subtotal + gst;
+document.getElementById("billingForm").addEventListener("submit", (event) => {
+    event.preventDefault();
 
-// Object + Destructuring
-const bill = { customerName, itemName, price, quantity, subtotal, gst, total };
-const { customerName: billedTo, subtotal: billSubtotal, total: billTotal } = bill;
+    const customerName = document.getElementById("customerName").value.trim();
+    const itemName = document.getElementById("itemName").value.trim();
+    const price = Number(document.getElementById("price").value);
+    const quantity = Number(document.getElementById("quantity").value);
+    const formMessage = document.getElementById("formMessage");
+
+    if (!customerName || !itemName || price < 0 || quantity < 1 || !Number.isFinite(price) || !Number.isInteger(quantity)) {
+        formMessage.textContent = "Enter a valid customer, item, price, and whole-number quantity.";
+        return;
+    }
+
+    formMessage.textContent = "";
+    const subtotal = price * quantity;
+    const gst = subtotal * taxRate;
+    const total = subtotal + gst;
+    const bill = { customerName, itemName, price, quantity, subtotal, gst, total };
+    const { customerName: billedTo, itemName: item, subtotal: billSubtotal, gst: billGst, total: billTotal } = bill;
+
+    document.getElementById("receipt").innerHTML = `
+        <div class="receipt-top"><div><span class="receipt-label">Billed to</span><strong>${billedTo}</strong></div><span class="paid-tag">Ready</span></div>
+        <div class="receipt-line"><span>${item} × ${quantity}</span><span>${formatCurrency(price * quantity)}</span></div>
+        <div class="receipt-line muted"><span>Subtotal</span><span>${formatCurrency(billSubtotal)}</span></div>
+        <div class="receipt-line muted"><span>GST (18%)</span><span>${formatCurrency(billGst)}</span></div>
+        <div class="receipt-total"><span>Total payable</span><strong>${formatCurrency(billTotal)}</strong></div>`;
+});
 ```
-
-**Receipt Output:**
-| Field | Value |
-|-------|-------|
-| Billed To | Customer Name |
-| Item × Qty | ₹ calculated |
-| Subtotal | ₹ subtotal |
-| GST (18%) | ₹ gst amount |
-| **Total Payable** | **₹ total** |
 
 ---
 
-### 🔹 Case Study — ShopEasy Online Shopping
+## Output
 
-**Files:** `CASE STUDY/index.html`, `CASE STUDY/script.js`
+1. **Initial Screen:** Renders a clean billing interface showing input fields for Customer Name, Item, Unit Price, and Quantity, with an informational badge stating `GST rate: 18%`.
+2. **Validation Control:** Enforces presence of strings and positive numerical values before executing computations.
+3. **Receipt Generation:** Renders a structured invoice card displaying Customer Name, Item × Quantity, Base Subtotal, 18% GST Amount, and Final Total Payable formatted using `.toFixed(2)`.
 
-A simple e-commerce page where customers can enter their name, choose product quantities (Laptop, Mobile, Headphones), and generate a full bill.
+---
 
-**Features:**
-- Product catalog with 3 items: Laptop (₹50,000), Mobile (₹20,000), Headphones (₹2,000)
-- Quantity input per item
-- Generates bill with all selected items, total, and discount
-- Membership-based discount tier logic
-- Responsive header with navigation
+## Screenshot
 
-**Key Code Concepts:**
-```js
-function calculateBill() {
-    let lapQty = parseInt(document.getElementById("lapQty").value);
-    let lapTotal = 50000 * lapQty;
-    // Discount applied based on total amount
-    if (total >= 50000) discount = total * 0.20;
-    else if (total >= 20000) discount = total * 0.10;
+![Billing Calculator Output](PRACTICAL/output.png)
+
+---
+
+## Case Study
+
+### Case Study — ShopEasy E-Commerce Store (Variables, Types & Coercion)
+
+**File:** `pract 2/CASE STUDY/index.html`, `pract 2/CASE STUDY/script.js`
+
+An e-commerce portal implementing multi-item catalog checkout (Laptop, Mobile, Headphones), premium membership discount logic (10% tier), and explicit demonstrations of JavaScript type coercion versus explicit type conversion.
+
+```javascript
+function calculateBill(){
+    var customerName = document.getElementById("customerName").value;
+    if(customerName.trim() === ""){
+        alert("Please enter your name.");
+        return;
+    }
+
+    let isMember = true;
+    const laptopPrice = 50000;
+    const mobilePrice = 20000;
+    const headphonePrice = 2000;
+
+    let lapQty = Number(document.getElementById("lapQty").value);
+    let mobQty = Number(document.getElementById("mobQty").value);
+    let headQty = Number(document.getElementById("headQty").value);
+
+    let subtotal = (lapQty * laptopPrice) + (mobQty * mobilePrice) + (headQty * headphonePrice);
+    let discount = isMember ? (subtotal * 0.10) : 0;
+    let total = subtotal - discount;
+
+    let num = 100;
+    let text = "200";
+    let coercion = num + text;             // "100200" (string concatenation)
+    let conversion = num + Number(text);    // 300 (numeric addition)
+
+    document.getElementById("customer").innerHTML = "<b>Customer Name (String using var):</b> " + customerName;
+    document.getElementById("membership").innerHTML = "<b>Premium Member (Boolean using let):</b> " + isMember;
+    document.getElementById("total").innerHTML =
+        "<hr><b>Subtotal :</b> ₹" + subtotal + "<br>" +
+        "<b>Discount (10%) :</b> ₹" + discount + "<br>" +
+        "<b>Final Bill :</b> ₹" + total + "<br><br>" +
+        "<b>Type Coercion:</b> 100 + '200' = " + coercion + "<br><br>" +
+        "<b>Type Conversion:</b> 100 + Number('200') = " + conversion;
 }
 ```
 
----
+### Case Study Output
 
-## 🔑 Key JavaScript Concepts
+1. **Multi-Item Calculation:** Multiplies quantities across varied product tiers to compute comprehensive order totals.
+2. **Membership Discount:** Automatically deducts a 10% discount for premium members.
+3. **Data Type Diagnostics:** Visually proves the difference between implicit string concatenation (`100 + "200" = 100200`) and explicit numeric conversion (`100 + Number("200") = 300`).
 
-| Concept | Used In |
-|---------|---------|
-| `const` / `let` | Both |
-| Number data type | Both |
-| String data type | Both |
-| Arithmetic operators (`*`, `+`, `-`, `/`) | Both |
-| `toFixed(2)` for decimal formatting | Practical |
-| Arrow functions `=>` | Practical |
-| Object literals `{}` | Practical |
-| Destructuring assignment `{ }` | Practical |
-| Template literals `` ` ` `` | Both |
-| `Number.isFinite()`, `Number.isInteger()` | Practical |
-| `document.getElementById()` | Both |
-| `innerHTML` | Both |
-| `addEventListener('submit')` | Practical |
-| `preventDefault()` | Practical |
+### Case Study Screenshot
+
+![ShopEasy E-Commerce Store Output](CASE STUDY/output.png)
 
 ---
 
-## 🖥️ How to Run
+## Result / Conclusion
 
-1. Open `PRACTICAL/index.html` in any browser
-2. Enter customer name, item name, price, and quantity
-3. Click **"Calculate bill →"** to see the receipt
-4. For Case Study: Open `CASE STUDY/index.html`, set product quantities, click **"Generate Bill"**
-
----
-
-## 👩‍💻 Developed By
-
-| Field | Details |
-|-------|---------|
-| **Name** | Samruddhi Kalbande |
-| **PRN** | 24070521278 |
-| **Institute** | SIT Nagpur |
-| **Subject** | JavaScript Lab |
+Experiment 2 was successfully executed and verified. The practical and case study validate JavaScript variable scoping (`var`, `let`, `const`), numerical data manipulation, arithmetic operations, operator precedence, currency formatting via `.toFixed()`, object packaging, and the critical distinction between type coercion and explicit type casting.

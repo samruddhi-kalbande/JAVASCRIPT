@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -102,3 +103,109 @@
     <script src="script.js"></script>
 </body>
 </html>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Handling Registration Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="page-shell">
+        <section class="form-card" aria-labelledby="form-title">
+            <div class="form-intro">
+                <p class="eyebrow">JavaScript Lab · Case Study</p>
+                <h1 id="form-title">Create your account</h1>
+                <p>Complete every field marked with <span aria-hidden="true">*</span> to register.</p>
+            </div>
+
+            <form id="registrationForm" novalidate>
+                <div class="field-grid">
+                    <div class="field-group">
+                        <label for="firstName">Firstname <span aria-hidden="true">*</span></label>
+                        <input type="text" id="firstName" name="firstName" autocomplete="given-name" required>
+                        <small class="error-message" id="firstNameError"></small>
+                    </div>
+
+                    <div class="field-group">
+                        <label for="lastName">Lastname <span aria-hidden="true">*</span></label>
+                        <input type="text" id="lastName" name="lastName" autocomplete="family-name" required>
+                        <small class="error-message" id="lastNameError"></small>
+                    </div>
+
+                    <fieldset class="field-group birthday-group">
+                        <legend>Birthday <span aria-hidden="true">*</span></legend>
+                        <div class="birthday-fields">
+                            <select id="day" name="day" required aria-label="Day">
+                                <option value="">Day</option>
+                            </select>
+                            <select id="month" name="month" required aria-label="Month">
+                                <option value="">Month</option>
+                                <option value="1">January</option>
+                                <option value="2">February</option>
+                                <option value="3">March</option>
+                                <option value="4">April</option>
+                                <option value="5">May</option>
+                                <option value="6">June</option>
+                                <option value="7">July</option>
+                                <option value="8">August</option>
+                                <option value="9">September</option>
+                                <option value="10">October</option>
+                                <option value="11">November</option>
+                                <option value="12">December</option>
+                            </select>
+                            <select id="year" name="year" required aria-label="Year">
+                                <option value="">Year</option>
+                            </select>
+                        </div>
+                        <small class="error-message" id="birthdayError"></small>
+                    </fieldset>
+
+                    <div class="field-group">
+                        <label for="username">Username <span aria-hidden="true">*</span></label>
+                        <input type="text" id="username" name="username" autocomplete="username" required>
+                        <small class="error-message" id="usernameError"></small>
+                    </div>
+
+                    <div class="field-group full-width">
+                        <label for="email">E-mail <span aria-hidden="true">*</span></label>
+                        <input type="email" id="email" name="email" autocomplete="email" required>
+                        <small class="error-message" id="emailError"></small>
+                    </div>
+
+                    <div class="field-group full-width">
+                        <label for="website">Website <span aria-hidden="true">*</span></label>
+                        <input type="url" id="website" name="website" placeholder="https://example.com" required>
+                        <small class="error-message" id="websiteError"></small>
+                    </div>
+
+                    <div class="field-group">
+                        <label for="password">Password <span aria-hidden="true">*</span></label>
+                        <input type="password" id="password" name="password" autocomplete="new-password" minlength="8" required>
+                        <small class="error-message" id="passwordError"></small>
+                    </div>
+
+                    <div class="field-group">
+                        <label for="rePassword">Re-password <span aria-hidden="true">*</span></label>
+                        <input type="password" id="rePassword" name="rePassword" autocomplete="new-password" required>
+                        <small class="error-message" id="rePasswordError"></small>
+                    </div>
+                </div>
+
+                <label class="terms-check" for="terms">
+                    <input type="checkbox" id="terms" name="terms" required>
+                    <span>I agree to the terms &amp; conditions <span aria-hidden="true">*</span></span>
+                </label>
+                <small class="error-message" id="termsError"></small>
+
+                <button type="submit">Register account</button>
+                <p id="formMessage" class="form-message" role="status" aria-live="polite"></p>
+            </form>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
+>>>>>>> 2cd5f03 (Update practical documentation to connected college format and add Practical 7 case study)

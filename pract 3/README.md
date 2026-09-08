@@ -1,157 +1,169 @@
-# 🎓 Practical 3 — Control Structures: Conditional Statements & Loops
+# Experiment No. 3
 
-> **JavaScript Lab · SIT Nagpur · Samruddhi Kalbande · PRN: 24070521278**
-
----
-
-## 📌 Aim
-
-To understand and implement JavaScript **control flow** through `if-else` conditional statements and demonstrate their use in real-world scenarios like a **Student Grading System** and **Password Verification Portal**.
+**Student Name:** Samruddhi Kalbande  
+**PRN:** 24070521278  
+**File Path:** `pract 3/PRACTICAL/index.html`, `pract 3/PRACTICAL/style.css`
 
 ---
 
-## 🎯 Objectives
+## Experiment Title
 
-- Use `if`, `else if`, and `else` statements for decision making
-- Validate user inputs before processing
-- Build a **Student Grading System** that assigns grades based on marks
-- Build a **Password Verification System** with real-time strength checking
-- Work with `Number()` type conversion and validation (`isNaN`)
+**Student Grading System & Control Structures**
 
 ---
 
-## 📁 Folder Structure
+## Software / Tools Required
 
+1. Visual Studio Code / Antigravity IDE
+2. Google Chrome (or modern web browser)
+3. HTML5
+4. CSS3
+5. JavaScript (ES6)
+
+---
+
+## Experiment Program Code
+
+### Task 3.a — Student Grading Interface and Marks Assessment Logic
+
+**File:** `pract 3/PRACTICAL/index.html`
+
+The HTML document renders an academic grading interface with inputs for Student Name and Marks, an evaluation action button, and integrated JavaScript logic evaluating numerical performance into letter grades (`A`, `B`, `C`) via `if-else` branching.
+
+```html
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Student Grading System</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <h2>Student Grading System</h2>
+
+        <form>
+            <label for="name">Student Name:</label><br>
+            <input type="text" id="name"><br><br>
+
+            <label for="marks">Marks:</label><br>
+            <input type="number" id="marks"><br><br>
+
+            <input type="button" value="Calculate Grade" onclick="gradeSystem()">
+        </form>
+        <script>
+            function gradeSystem() {
+                var name = document.getElementById("name").value.trim();
+                var marks = document.getElementById("marks").value.trim();
+
+                if (!name || !marks) {
+                    alert("Please enter both student name and marks.");
+                    return;
+                }
+
+                var numericMarks = Number(marks);
+                if (isNaN(numericMarks) || numericMarks < 0 || numericMarks > 100) {
+                    alert("Please enter a valid marks value between 0 and 100.");
+                    return;
+                }
+
+                var grade;
+                if (numericMarks >= 80) {
+                    grade = "A";
+                } else if (numericMarks >= 60) {
+                    grade = "B";
+                } else {
+                    grade = "C";
+                }
+
+                alert("Student: " + name + "\nGrade: " + grade);
+            }
+        </script>
+    </body>
+</html>
 ```
-pract 3/
-├── PRACTICAL/
-│   ├── index.html      # Student Grading System
-│   ├── script.js       # Grading logic
-│   └── style.css       # Styling
-└── CASE STUDY/
-    ├── index.html      # Password Verification Portal
-    ├── script.js       # Password strength checker
-    └── styles.css      # Styling
-```
 
 ---
 
-## 💻 Programs
+## Output
 
-### 🔹 Practical — Student Grading System
+1. **Input Verification:** Verifies both the Student Name and Marks fields are populated and ensures marks reside within the valid boundary (`0` to `100`).
+2. **Conditional Evaluation:** Applies threshold conditions:
+   - Marks $\ge 80 \implies$ **Grade A**
+   - Marks $60 - 79 \implies$ **Grade B**
+   - Marks $< 60 \implies$ **Grade C**
+3. **Alert Display:** Presents the student's evaluated grade via an interactive alert dialog.
 
-**Files:** `PRACTICAL/index.html`, `PRACTICAL/script.js`
+---
 
-A web application that accepts a student's name and marks, then assigns a grade using `if-else` conditional logic.
+## Screenshot
 
-**Grade Criteria:**
+![Student Grading System Output](PRACTICAL/output.png)
 
-| Marks Range | Grade |
-|-------------|-------|
-| 80 – 100 | A |
-| 60 – 79 | B |
-| 0 – 59 | C |
+---
 
-**Features:**
-- Input validation: checks for empty fields and invalid mark ranges
-- Converts input string to number using `Number()`
-- Validates that marks are between 0 and 100
-- Displays grade via `alert()` dialog
+## Case Study
 
-**Key Code Concepts:**
-```js
-function gradeSystem() {
-    var name = document.getElementById("name").value.trim();
-    var numericMarks = Number(marks);
+### Case Study — Password Verification & Strength Assessment Portal
 
-    if (isNaN(numericMarks) || numericMarks < 0 || numericMarks > 100) {
-        alert("Please enter a valid marks value between 0 and 100.");
-        return;
-    }
+**File:** `pract 3/CASE STUDY/index.html`, `pract 3/CASE STUDY/script.js`
 
-    var grade;
-    if (numericMarks >= 80) {
-        grade = "A";
-    } else if (numericMarks >= 60) {
-        grade = "B";
-    } else {
-        grade = "C";
-    }
+A user registration security portal assessing password entropy in real-time across five validation dimensions: length ($\ge 8$), uppercase letters, lowercase letters, digits, and special symbols (`[@$!%*?&,]`).
 
-    alert("Student: " + name + "\nGrade: " + grade);
+```javascript
+// Password strength and registration logic for Pract 3
+const pwd = document.getElementById('password');
+const confirmPwd = document.getElementById('confirm');
+const strengthBar = document.getElementById('strengthBar');
+const strengthText = document.getElementById('strengthText');
+const registerBtn = document.getElementById('register');
+
+function scorePassword(s){
+  let score = 0;
+  if(!s) return 0;
+  if(s.length >= 8) score += 1;
+  if(/[A-Z]/.test(s)) score += 1;
+  if(/[a-z]/.test(s)) score += 1;
+  if(/[0-9]/.test(s)) score += 1;
+  if(/[@$!%*?&,]/.test(s)) score += 1;
+  return score; // 0-5
 }
-```
 
----
-
-### 🔹 Case Study — Password Verification Portal
-
-**Files:** `CASE STUDY/index.html`, `CASE STUDY/script.js`
-
-A secure registration portal that validates password strength in real-time using **regular expressions** and **conditional logic**.
-
-**Password Requirements:**
-
-| Requirement | Rule |
-|-------------|------|
-| Minimum 8 characters | `length >= 8` |
-| At least 1 uppercase letter | `/[A-Z]/` regex |
-| At least 1 lowercase letter | `/[a-z]/` regex |
-| At least 1 digit | `/[0-9]/` regex |
-| At least 1 special character | `/[@$!%*?&]/` regex |
-
-**Features:**
-- Real-time password strength bar (visual feedback)
-- Strength levels: Too Weak → Weak → Medium → Strong
-- Password confirmation match check
-- Displays requirement checklist to guide the user
-
-**Key Code Concepts:**
-```js
-function checkStrength(password) {
-    let score = 0;
-    if (password.length >= 8) score++;
-    if (/[A-Z]/.test(password)) score++;
-    if (/[a-z]/.test(password)) score++;
-    if (/[0-9]/.test(password)) score++;
-    if (/[@$!%*?&]/.test(password)) score++;
-    return score; // 0-5 scale
+function updateStrength(){
+  const s = pwd.value;
+  const sc = scorePassword(s);
+  const pct = (sc/5)*100;
+  strengthBar.style.setProperty('--pct', pct + '%');
+  strengthBar.style.background = '#ffe6f0';
+  strengthBar.innerHTML = '<div style="height:100%;width:'+pct+'%;background:#ff6090;border-radius:6px"></div>';
+  if(sc <= 2) strengthText.textContent = 'Too Weak';
+  else if(sc === 3) strengthText.textContent = 'Weak';
+  else if(sc === 4) strengthText.textContent = 'Good';
+  else strengthText.textContent = 'Strong';
 }
+
+pwd.addEventListener('input', updateStrength);
+
+registerBtn.addEventListener('click', function(){
+  const p = pwd.value;
+  const c = confirmPwd.value;
+  if(p !== c){ alert('Passwords do not match'); return; }
+  const sc = scorePassword(p);
+  if(sc < 3){ alert('Password is too weak'); return; }
+  alert('User registered successfully');
+});
 ```
 
----
+### Case Study Output
 
-## 🔑 Key JavaScript Concepts
+1. **Real-time Keystroke Feedback:** Listens to `input` events and dynamically stretches a visual progress bar indicating password strength.
+2. **Category Classification:** Classifies password security into four progressive categories: *Too Weak*, *Weak*, *Good*, and *Strong*.
+3. **Registration Guard:** Disallows submission if passwords do not match or if the password score falls below the required threshold ($< 3$).
 
-| Concept | Used In |
-|---------|---------|
-| `if` / `else if` / `else` | Both |
-| `Number()` type conversion | Practical |
-| `isNaN()` validation | Practical |
-| Input `.trim()` | Both |
-| `alert()` dialog | Practical |
-| Regular Expressions (`/pattern/`) | Case Study |
-| `.test()` regex method | Case Study |
-| Real-time event handling (`input` event) | Case Study |
-| DOM manipulation | Both |
-| Form validation | Both |
+### Case Study Screenshot
+
+![Password Verification Portal Output](CASE STUDY/output.png)
 
 ---
 
-## 🖥️ How to Run
+## Result / Conclusion
 
-1. Open `PRACTICAL/index.html` in any browser
-2. Enter a student name and marks (0–100)
-3. Click **"Calculate Grade"** to see the grade via alert
-4. For Case Study: Open `CASE STUDY/index.html`, type a username and password to see real-time strength feedback
-
----
-
-## 👩‍💻 Developed By
-
-| Field | Details |
-|-------|---------|
-| **Name** | Samruddhi Kalbande |
-| **PRN** | 24070521278 |
-| **Institute** | SIT Nagpur |
-| **Subject** | JavaScript Lab |
+Experiment 3 was successfully implemented and verified. The practical and case study validate core control flow structures in JavaScript (`if`, `else if`, `else`), numerical validation using `isNaN()`, string whitespace sanitization via `.trim()`, and real-time event-driven condition checking using regular expressions.

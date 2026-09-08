@@ -1,201 +1,206 @@
-# 🔍 Practical 6 — String Methods & Regular Expressions
+# Experiment No. 6
 
-> **JavaScript Lab · SIT Nagpur · Samruddhi Kalbande · PRN: 24070521278**
-
----
-
-## 📌 Aim
-
-To understand and apply JavaScript **String Methods** and **Regular Expressions (RegEx)** for text processing, pattern matching, email validation, and information extraction.
+**Student Name:** Samruddhi Kalbande  
+**PRN:** 24070521278  
+**File Path:** `pract 6/PRACTICAL/index.html`, `pract 6/PRACTICAL/script.js`
 
 ---
 
-## 🎯 Objectives
+## Experiment Title
 
-- Use JavaScript string methods: `split()`, `match()`, `replace()`, `indexOf()`, `reverse()`
-- Write and apply **Regular Expressions** for pattern matching
-- Validate email addresses using regex
-- Extract specific data (emails, names, phone numbers) from raw text using regex
-- Build a **Login System** with regex-based credential validation
-- Build a **Student Information Extractor** using regex
+**String Methods & Regular Expressions (RegEx) Text Processing Tool**
 
 ---
 
-## 📁 Folder Structure
+## Software / Tools Required
 
+1. Visual Studio Code / Antigravity IDE
+2. Google Chrome (or modern web browser)
+3. HTML5
+4. CSS3
+5. JavaScript (ES6)
+
+---
+
+## Experiment Program Code
+
+### Task 6.a — String Processing & Regular Expression Analysis Interface
+
+**File:** `pract 6/PRACTICAL/index.html`
+
+The HTML document creates an interactive text workbench with textarea inputs for paragraph analysis, single-line email verification inputs, a process button, and structured output display containers.
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Practical 6 - String & Regex</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <h2>String Methods and Regular Expressions</h2>
+
+    <label>Enter Paragraph:</label>
+    <textarea id="paragraph" rows="5" placeholder="Enter paragraph here..."></textarea>
+
+    <label>Enter Email to Validate:</label>
+    <input type="text" id="email" placeholder="example@email.com">
+
+    <button onclick="processString()">Process</button>
+
+    <div class="output" id="output"></div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
 ```
-pract 6/
-├── PRACTICAL/
-│   ├── index.html      # String Methods & RegEx Tool
-│   ├── script.js       # processString() with all string methods
-│   └── style.css       # Styling
-├── CASE STUDY 1/
-│   ├── index.html      # Sign In / Login Page
-│   ├── regis.html      # Registration Page
-│   ├── script.js       # Login/Register validation with regex
-│   └── style.css       # Glassmorphism UI
-└── CASE STUDY 2/
-    ├── index.html      # Student Information Extractor
-    ├── script.js       # Regex-based info extraction
-    └── style.css       # Styling
-```
 
 ---
 
-## 💻 Programs
+### Task 6.b — String Method Pipeline & Regex Pattern Matching Logic
 
-### 🔹 Practical — String Methods & Regular Expressions Tool
+**File:** `pract 6/PRACTICAL/script.js`
 
-**Files:** `PRACTICAL/index.html`, `PRACTICAL/script.js`
+The JavaScript script analyzes text using built-in string methods (`split`, `indexOf`, `replace`, array reversal) and executes regular expressions with flags (`/pattern/gi`) for vowel tallying, email RFC compliance verification, and global address token extraction.
 
-An all-in-one string analysis tool that demonstrates multiple JavaScript string methods and regex operations on a paragraph of text.
-
-**Features & Operations:**
-
-| Operation | Method Used | Description |
-|-----------|-------------|-------------|
-| Word Count | `split(/\s+/)` | Splits paragraph by whitespace |
-| Vowel Count | `match(/[aeiou]/gi)` | Finds all vowels using regex |
-| Word Replace | `replace(/JavaScript/gi, ...)` | Replaces all occurrences |
-| Word Search | `indexOf("powerful")` | Finds position of word |
-| Email Validation | `/^[a-zA-Z0-9._%+-]+@.../` | Validates email format |
-| Email Extraction | `match(/...email pattern.../g)` | Extracts all emails from text |
-| Text Reversal | `split('').reverse().join('')` | Reverses the paragraph |
-
-**Key Code Concepts:**
-```js
+```javascript
 function processString() {
     let paragraph = document.getElementById("paragraph").value.trim();
+    let email = document.getElementById("email").value.trim();
 
-    // split() — count words
+    // Word count via whitespace tokenization
     let words = paragraph.split(/\s+/);
 
-    // match() — count vowels
+    // Vowel count via regex matching
     let vowels = paragraph.match(/[aeiou]/gi);
     let vowelCount = vowels ? vowels.length : 0;
 
-    // replace() — substitute text
-    let replacedParagraph = paragraph.replace(/JavaScript/gi, "JavaScript Programming");
-
-    // indexOf() — find position
-    let position = paragraph.indexOf("powerful");
-
-    // Email validation regex
-    let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-
-    // Email extraction regex
-    let extractedEmails = emailText.match(
-        /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g
+    // Substring replacement
+    let replacedParagraph = paragraph.replace(
+        /JavaScript/gi,
+        "JavaScript Programming"
     );
 
-    // reverse() — reverse the paragraph
+    // Index lookup
+    let searchWord = "powerful";
+    let position = paragraph.indexOf(searchWord);
+
+    // Email validation
+    let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    let emailResult = emailPattern.test(email) ? "Valid Email" : "Invalid Email";
+
+    // Global extraction
+    let emailText = "For queries, contact student@example.com or admin@college.edu";
+    let extractedEmails = emailText.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g);
+
+    // String reversal
     let reversedParagraph = paragraph.split("").reverse().join("");
+
+    document.getElementById("output").innerHTML = `
+        <p><b>Words in Paragraph:</b> ${words.length}</p>
+        <p><b>Vowel Count:</b> ${vowelCount}</p>
+        <p><b>Replaced Paragraph:</b> ${replacedParagraph}</p>
+        <p><b>Position of "${searchWord}":</b> ${position !== -1 ? position : "Not Found"}</p>
+        <p><b>Email Validation Result:</b> ${emailResult}</p>
+        <p><b>Extracted Emails:</b> ${extractedEmails ? extractedEmails.join(", ") : "None"}</p>
+        <p><b>Reversed Paragraph:</b> ${reversedParagraph}</p>`;
 }
 ```
 
 ---
 
-### 🔹 Case Study 1 — Sign In / Registration Portal
+## Output
 
-**Files:** `CASE STUDY 1/index.html`, `CASE STUDY 1/regis.html`, `CASE STUDY 1/script.js`
+1. **Word & Vowel Computation:** Splits the paragraph across whitespace boundaries to count words and executes regex `/[aeiou]/gi` to calculate vowel volume.
+2. **Text Search & Transformation:** Locates character offsets using `indexOf()` and executes case-insensitive string substitutions.
+3. **Pattern Verification & Parsing:** Validates email input integrity with `.test()` and extracts all email addresses matching the global RFC expression.
 
-A two-page authentication system with **Login** and **Registration** pages, both using regex-based validation.
+---
 
-**Login Validation:**
-- Email: must match standard email regex format
-- Password: must meet strength requirements
+## Screenshot
 
-**Registration Validation:**
+![String Methods & RegEx Tool Output](PRACTICAL/output.png)
 
-| Field | Regex Rule |
-|-------|-----------|
-| Username | Alphanumeric, min 3 chars |
-| Email | Standard email pattern |
-| Password | Min 8 chars, uppercase, digit, special char |
-| Confirm Password | Must match password field |
+---
 
-**Demo Credentials:** `user@example.com` / `Password@123`
+## Case Study
 
-**Key Code Concepts:**
-```js
+### Case Study 1 — User Authentication & Registration Portal
+
+**File:** `pract 6/CASE STUDY 1/index.html`, `pract 6/CASE STUDY 1/script.js`
+
+An authentication system featuring sign-in and sign-up interfaces with real-time regular expression checks for email syntax, minimum password complexity constraints, and credential verification against simulated accounts.
+
+```javascript
 const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/;
 
-function validateLogin(email, password) {
-    if (!emailRegex.test(email)) return "Invalid email format";
-    if (!passwordRegex.test(password)) return "Password too weak";
-    return null; // valid
-}
+loginForm.addEventListener("submit", function(event) {
+    event.preventDefault();
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
+    const message = document.getElementById("loginMessage");
+
+    if (!emailRegex.test(email)) {
+        message.textContent = "Please enter a valid email address.";
+        message.style.color = "#d62828";
+        return;
+    }
+    if (password.length < 6) {
+        message.textContent = "Password must contain at least 6 characters.";
+        message.style.color = "#d62828";
+        return;
+    }
+    if (email === "user@example.com" && password === "Password@123") {
+        message.textContent = "Login successful!";
+        message.style.color = "#1769d1";
+    } else {
+        message.textContent = "Invalid email or password.";
+        message.style.color = "#d62828";
+    }
+});
 ```
+
+### Case Study 1 Screenshot
+
+![User Authentication Portal Output](CASE%20STUDY%201/output.png)
 
 ---
 
-### 🔹 Case Study 2 — Student Information Extractor
+### Case Study 2 — Student Information Text Extractor
 
-**Files:** `CASE STUDY 2/index.html`, `CASE STUDY 2/script.js`
+**File:** `pract 6/CASE STUDY 2/index.html`, `pract 6/CASE STUDY 2/script.js`
 
-A tool that uses **Regular Expressions** to extract student details (name, PRN, phone, email) from raw unstructured text.
+A text parsing engine using regular expression capture groups to parse unstructured paragraph text and extract Name, Roll Number, 10-digit Phone Number, and Email Address.
 
-**Features:**
-- Paste raw student information text
-- Automatically extracts:
-  - Email addresses
-  - Phone numbers (10-digit format)
-  - PRN numbers
-  - Names (pattern-based)
-- Displays extracted data in a structured format
-
-**Key Code Concepts:**
-```js
+```javascript
 function processText() {
     let text = document.getElementById("inputText").value;
 
-    // Extract emails
-    let emails = text.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g);
+    let nameMatch = text.match(/student\s+name\s+is\s+([A-Za-z ]+)/i);
+    let rollMatch = text.match(/roll\s+number\s+is\s+(\d+)/i);
+    let phoneMatch = text.match(/phone\s+number\s+is\s+(\d{10})/i);
+    let emailMatch = text.match(/email\s+id\s+is\s+([A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,})/i);
 
-    // Extract phone numbers
-    let phones = text.match(/\b\d{10}\b/g);
+    let name = nameMatch ? nameMatch[1].trim() : "Not Found";
+    let roll = rollMatch ? rollMatch[1].trim() : "Not Found";
+    let phone = phoneMatch ? phoneMatch[1].trim() : "Not Found";
+    let email = emailMatch ? emailMatch[1].trim() : "Not Found";
 
-    // Extract PRN (10-digit starting with 2407...)
-    let prns = text.match(/\b2407\d{7}\b/g);
+    let emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+    let phoneRegex = /^\d{10}$/;
+
+    let emailStatus = emailRegex.test(email) ? "Valid" : "Invalid";
+    let phoneStatus = phoneRegex.test(phone) ? "Valid" : "Invalid";
 }
 ```
 
----
+### Case Study 2 Screenshot
 
-## 🔑 Key JavaScript Concepts
-
-| Concept | Used In |
-|---------|---------|
-| `split()` string method | Practical |
-| `match()` with regex | Practical & CS2 |
-| `replace()` with regex flags | Practical |
-| `indexOf()` | Practical |
-| `reverse()` array method | Practical |
-| `join()` | Practical |
-| Regular Expressions (`/pattern/flags`) | All |
-| Regex flags: `g` (global), `i` (case-insensitive) | All |
-| `test()` for validation | CS1 |
-| Lookahead in regex `(?=...)` | CS1 |
-| Character classes `[aeiou]`, `[A-Z]`, `\d` | All |
-| Anchors `^` and `$` | CS1 |
-| Quantifiers `+`, `*`, `{n,m}` | All |
+![Student Information Extractor Output](CASE%20STUDY%202/output.png)
 
 ---
 
-## 🖥️ How to Run
+## Result / Conclusion
 
-1. Open `PRACTICAL/index.html` — enter a paragraph and email, click **"Process"** to see all string operations
-2. Open `CASE STUDY 1/index.html` — sign in with demo credentials or register a new account
-3. Open `CASE STUDY 2/index.html` — paste student info text, click **"Extract Information"**
-
----
-
-## 👩‍💻 Developed By
-
-| Field | Details |
-|-------|---------|
-| **Name** | Samruddhi Kalbande |
-| **PRN** | 24070521278 |
-| **Institute** | SIT Nagpur |
-| **Subject** | JavaScript Lab |
+Experiment 6 was successfully implemented and verified. The practical and dual case studies demonstrate the utility of JavaScript string methods and regular expressions for text tokenization, case-insensitive string substitutions, input validation, authentication security, and information extraction using capture groups.

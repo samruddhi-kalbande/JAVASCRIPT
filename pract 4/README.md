@@ -1,175 +1,181 @@
-# 🔤 Practical 4 — Functions: Palindrome Checker & Vehicle Registration Validator
+# Experiment No. 4
 
-> **JavaScript Lab · SIT Nagpur · Samruddhi Kalbande · PRN: 24070521278**
-
----
-
-## 📌 Aim
-
-To understand and implement **JavaScript functions** — including function declarations, arrow functions, and try-catch error handling — through practical applications like a **Palindrome Checker** and a **Vehicle Registration Validator**.
+**Student Name:** Samruddhi Kalbande  
+**PRN:** 24070521278  
+**File Path:** `pract 4/PRACTICAL/index.html`, `pract 4/PRACTICAL/script.js`
 
 ---
 
-## 🎯 Objectives
+## Experiment Title
 
-- Define and call JavaScript functions
-- Use functions to modularize and reuse logic
-- Implement **try-catch** for error handling inside functions
-- Use **Regular Expressions** inside functions for pattern matching
-- Build a **Palindrome Checker** using string manipulation functions
-- Build a **Vehicle Registration Validator** using format rules
+**Palindrome Checker & Functions in JavaScript**
 
 ---
 
-## 📁 Folder Structure
+## Software / Tools Required
 
+1. Visual Studio Code / Antigravity IDE
+2. Google Chrome (or modern web browser)
+3. HTML5
+4. CSS3
+5. JavaScript (ES6)
+
+---
+
+## Experiment Program Code
+
+### Task 4.a — Palindrome Checker Interface Setup
+
+**File:** `pract 4/PRACTICAL/index.html`
+
+The HTML document structures a clean card-based layout featuring an input field for textual data, an evaluation action button, a dynamic result message container, and student author credentials.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palindrome Checker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="card">
+        <h1>Palindrome Checker</h1>
+        <p class="subtitle">Check if a word or phrase reads the same backward as forward.</p>
+
+        <label for="textInput">Enter text</label>
+        <input type="text" id="textInput" placeholder="e.g. racecar, madam, 121" autocomplete="off">
+
+        <button id="checkBtn">Check</button>
+
+        <div id="result" class="result" aria-live="polite"></div>
+
+        <div class="author-credits">
+            <p><strong>Developed By</strong></p>
+            <p>Samruddhi Kalbande</p>
+            <p>PRN: 24070521278</p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
 ```
-pract 4/
-├── PRACTICAL/
-│   ├── index.html      # Palindrome Checker UI
-│   ├── script.js       # isPalindrome() function + event handlers
-│   └── style.css       # Styling
-└── CASE STUDY/
-    ├── index.html      # Vehicle Registration Validator UI
-    ├── script.js       # validateVehicleReg() function
-    └── styles.css      # Styling
-```
 
 ---
 
-## 💻 Programs
+### Task 4.b — Function Declarations, String Transformations & Event Listeners
 
-### 🔹 Practical — Palindrome Checker
+**File:** `pract 4/PRACTICAL/script.js`
 
-**Files:** `PRACTICAL/index.html`, `PRACTICAL/script.js`, `PRACTICAL/style.css`
+The JavaScript script encapsulates palindrome detection inside a function featuring `try-catch` exception handling, removes whitespace/non-alphanumeric noise using regex, performs array-based reversal (`.split('').reverse().join('')`), and binds to both mouse `click` and keyboard `keydown` (Enter key) events.
 
-A tool to check whether a word or sentence is a **palindrome** (reads the same forwards and backwards, ignoring spaces and case).
+```javascript
+const input = document.getElementById('textInput');
+const button = document.getElementById('checkBtn');
+const resultBox = document.getElementById('result');
 
-**Examples:**
-
-| Input | Result |
-|-------|--------|
-| `racecar` | ✅ Palindrome |
-| `A man a plan a canal Panama` | ✅ Palindrome |
-| `hello` | ❌ Not a Palindrome |
-| `Madam` | ✅ Palindrome |
-
-**Features:**
-- Case-insensitive comparison
-- Ignores non-alphanumeric characters
-- Supports both button click and **Enter key** press
-- Displays result with color-coded feedback (green/red)
-- Error handled with try-catch
-
-**Key Code Concepts:**
-```js
 function isPalindrome(text) {
-    try {
-        // Clean: lowercase + remove non-alphanumeric characters
-        const cleaned = text.toLowerCase().replace(/[^a-z0-9]/g, '');
-        // Reverse the cleaned string
-        const reversed = cleaned.split('').reverse().join('');
-        return cleaned === reversed;
-    } catch (error) {
-        return false;
-    }
+  try {
+    const cleaned = text.toLowerCase().replace(/[^a-z0-9]/g, '');
+    const reversed = cleaned.split('').reverse().join('');
+    return cleaned === reversed;
+  } catch (error) {
+    return false;
+  }
 }
 
 function showResult(message, isPalindromeText) {
-    resultBox.textContent = message;
-    resultBox.className = `result ${isPalindromeText ? 'success' : 'error'}`;
+  resultBox.textContent = message;
+  resultBox.className = `result ${isPalindromeText ? 'success' : 'error'}`;
 }
 
-// Event listener for Enter key
+button.addEventListener('click', () => {
+  const text = input.value.trim();
+
+  if (text === '') {
+    showResult('Please enter some text.', false);
+    return;
+  }
+
+  const result = isPalindrome(text);
+  showResult(result ? 'It is a palindrome!' : 'It is not a palindrome.', result);
+});
+
 input.addEventListener('keydown', (event) => {
-    if (event.key === 'Enter') { /* check */ }
+  if (event.key === 'Enter') {
+    event.preventDefault();
+    const text = input.value.trim();
+
+    if (text === '') {
+      showResult('Please enter some text.', false);
+      return;
+    }
+
+    const result = isPalindrome(text);
+    showResult(result ? 'It is a palindrome!' : 'It is not a palindrome.', result);
+  }
 });
 ```
 
 ---
 
-### 🔹 Case Study — Vehicle Registration Validator
+## Output
 
-**Files:** `CASE STUDY/index.html`, `CASE STUDY/script.js`
+1. **Input Cleansing:** Case-insensitively strips non-alphanumeric punctuation and spaces before testing.
+2. **Reversal & Equivalence:** Uses chaining `.split('').reverse().join('')` to determine symmetric identity.
+3. **Dual Event Dispatch:** Users can test phrases by either clicking the **Check** button or pressing the **Enter** key.
+4. **Visual Result State:** Updates the result element's class dynamically with `.success` (green) for valid palindromes or `.error` (red) for non-palindromic inputs.
 
-A portal that validates Indian vehicle registration numbers against the official **10-character format**.
+---
 
-**Indian Vehicle Registration Format:**
+## Screenshot
 
-```
-MH  12  AB  1234
-↑   ↑   ↑   ↑
-State District Series Vehicle No.
-Code  Code
-(2)  (2)  (2)   (4)
-```
+![Palindrome Checker Output](PRACTICAL/output.png)
 
-**Validation Rules:**
+---
 
-| Position | Characters | Rule |
-|----------|------------|------|
-| 1–2 | State Code | Uppercase letters (A-Z) |
-| 3–4 | District Code | Digits (0-9) |
-| 5–6 | Series | Uppercase letters (A-Z) |
-| 7–10 | Vehicle No. | Digits (0-9) |
-| Total length | 10 | Exactly 10 characters |
+## Case Study
 
-**Key Code Concepts:**
-```js
-function validateVehicleReg(reg) {
-    if (!reg) return { valid: false, msg: "Registration number is required." };
-    if (reg.length !== 10) return { valid: false, msg: "Length must be exactly 10 characters." };
+### Case Study — Indian Vehicle Registration Validator
 
-    const stateCode = reg.slice(0, 2);
-    const districtCode = reg.slice(2, 4);
-    const series = reg.slice(4, 6);
-    const vehicleNo = reg.slice(6, 10);
+**File:** `pract 4/CASE STUDY/index.html`, `pract 4/CASE STUDY/script.js`
 
-    if (!/^[A-Z]{2}$/.test(stateCode)) return { valid: false, msg: "Invalid State Code." };
-    if (!/^\d{2}$/.test(districtCode)) return { valid: false, msg: "Invalid District Code." };
-    if (!/^[A-Z]{2}$/.test(series)) return { valid: false, msg: "Invalid Series." };
-    if (!/^\d{4}$/.test(vehicleNo)) return { valid: false, msg: "Invalid Vehicle Number." };
+A specialized validation portal evaluating license plates against the Indian Motor Vehicles Act standard format (`State(2) + District(2) + Series(2) + UniqueID(4)`, e.g., `MH12AB1234`).
 
-    return { valid: true, msg: `Valid registration: ${reg}` };
+```javascript
+// Vehicle registration validator for Pract 4
+const regInput = document.getElementById('reg');
+const validateBtn = document.getElementById('validate');
+
+function validateRegistration(code){
+  if(!code) return {ok:false,msg:'Empty'};
+  if(code.length !== 10) return {ok:false,msg:'Length must be 10'};
+  const re = /^[A-Z]{2}[0-9]{2}[A-Z]{2}[0-9]{4}$/;
+  if(re.test(code)) return {ok:true,msg:'Valid'};
+  return {ok:false,msg:'Invalid format'};
 }
+
+validateBtn.addEventListener('click', function(){
+  const code = (regInput.value || '').trim().toUpperCase();
+  const res = validateRegistration(code);
+  if(res.ok) alert('Registration is valid');
+  else alert('Invalid registration: ' + res.msg);
+});
 ```
 
----
+### Case Study Output
 
-## 🔑 Key JavaScript Concepts
+1. **Length Pre-check:** Enforces an exact 10-character string requirement.
+2. **Regex Pattern Matching:** Validates state codes, two-digit district numbers, series letters, and four-digit vehicle identifiers via `/^[A-Z]{2}[0-9]{2}[A-Z]{2}[0-9]{4}$/`.
+3. **Structured Object Returns:** The function returns descriptive validation objects `{ ok: boolean, msg: string }` driving modal alerts.
 
-| Concept | Used In |
-|---------|---------|
-| Function declarations | Both |
-| Arrow functions `=>` | Practical |
-| Return values from functions | Both |
-| `try-catch` error handling | Practical |
-| `.toLowerCase()` string method | Practical |
-| `.replace()` with regex | Practical |
-| `.split('').reverse().join('')` | Practical |
-| Regular expressions (`/pattern/`) | Both |
-| `.test()` regex method | Case Study |
-| `.slice()` string method | Case Study |
-| `addEventListener()` | Both |
-| Keyboard events (`keydown`) | Practical |
-| DOM class manipulation | Practical |
+### Case Study Screenshot
+
+![Vehicle Registration Validator Output](CASE STUDY/output.png)
 
 ---
 
-## 🖥️ How to Run
+## Result / Conclusion
 
-1. Open `PRACTICAL/index.html` in any browser
-2. Type any word or sentence in the text box
-3. Click **"Check"** or press **Enter** — result appears with color feedback
-4. For Case Study: Open `CASE STUDY/index.html`, enter a 10-character vehicle number like `MH12AB1234`
-
----
-
-## 👩‍💻 Developed By
-
-| Field | Details |
-|-------|---------|
-| **Name** | Samruddhi Kalbande |
-| **PRN** | 24070521278 |
-| **Institute** | SIT Nagpur |
-| **Subject** | JavaScript Lab |
+Experiment 4 was successfully developed and verified. The practical and case study demonstrate modular functional programming in JavaScript, encompassing function definitions, parameter passing, return structures, `try-catch` blocks, array string reversal pipelines, regular expression validation schemas, and keyboard event dispatching.
