@@ -1,172 +1,72 @@
-# ✅ Practical 7 — DOM Manipulation: To-Do List Application
+Practical 7 — DOM Traversal and Updates: To-Do List Application
 
-> **JavaScript Lab · SIT Nagpur · Samruddhi Kalbande · PRN: 24070521278**
 
----
+Aim : To perform DOM Traversal and Updates and develop a To-Do List Application with Add, Edit, and Delete features.
 
-## 📌 Aim
+Software / Tools Required : 
+Visual Studio Code
+Google Chrome
+HTML5
+JavaScript (ES6)
+Theory
 
-To understand and demonstrate **DOM (Document Object Model) Manipulation** in JavaScript by building a fully interactive **To-Do List** application that allows users to add, edit, and delete tasks dynamically.
+DOM (Document Object Model) represents an HTML document as a tree of elements. JavaScript can access and modify these elements dynamically.
 
----
+a) DOM Traversal
+getElementById() – Used to access HTML elements.
+querySelectorAll() – Used to select multiple elements.
+b) DOM Manipulation
+createElement() – Used to create new elements.
+appendChild() – Used to add elements.
+remove() – Used to delete elements.
+innerText – Used to display or modify text.
+c) Event Handling
+addEventListener() – Used to handle user actions.
+click event – Used to perform operations when a button is clicked.
+7.1 Implementation: To-Do List
 
-## 🎯 Objectives
+A simple To-Do List application was developed using HTML, CSS and JavaScript. It allows the user to add, edit and delete tasks.
 
-- Create, modify, and delete HTML elements dynamically using JavaScript
-- Use `document.createElement()` to build DOM elements programmatically
-- Use `appendChild()` and `removeChild()` to modify the DOM tree
-- Use `replaceChild()` to swap elements during edit mode
-- Handle multiple event listeners on dynamically created elements
-- Build a **fully functional To-Do List** with add, edit, and delete features
+Functions : 
+getElementById() – To access HTML elements.
+addEventListener() – To handle button clicks.
+createElement() – To create new list items and buttons.
+appendChild() – To add tasks to the list.
+remove() – To delete tasks.
+innerText – To display and edit task names.
+Working of the To-Do List
+The user enters a task in the input field.
+The Add button adds the task to the list.
+The Edit option allows the task name to be modified.
+The Delete option removes the task from the list.
+JavaScript DOM methods are used to dynamically create and update the task elements.
 
----
+The To-Do List output shown on page 4 contains tasks such as Homework and Workout, with Edit and Delete buttons for each task.
 
-## 📁 Folder Structure
+7.2 Case Study: Registration Form
 
-```
-pract 7/
-├── PRACTICAL/
-│   ├── index.html      # To-Do List App UI
-│   ├── script.js       # DOM manipulation logic
-│   └── style.css       # Styling
-└── CASE STUDY/
-    └── (empty)         # Reserved for future case study
-```
+A Registration Form was created using HTML, CSS and JavaScript. It contains the following fields:
 
----
+Firstname
+Lastname
+Birthday
+Username
+E-mail
+Website
+Password
+Re-password
+Terms and Conditions checkbox
+JavaScript Functionality
 
-## 💻 Programs
+JavaScript was used to:
 
-### 🔹 Practical — To-Do List Application
+Access form elements using DOM methods.
+Validate required fields and email.
+Check password and re-password.
+Handle change and submit events.
+Display error messages for invalid input.
 
-**Files:** `PRACTICAL/index.html`, `PRACTICAL/script.js`, `PRACTICAL/style.css`
+The Registration Form screenshot on page 3 shows the form interface with the above fields, a terms-and-conditions checkbox, and a Sign Up button.
 
-A complete task management application where all list items are created and managed entirely through JavaScript DOM manipulation — no tasks are hard-coded in HTML.
-
-**Features:**
-- ➕ **Add Task** — Type a task and click "Add" to create a new list item
-- ✏️ **Edit Task** — Click "Edit" to switch to edit mode, then "Save" to update
-- 🗑️ **Delete Task** — Click "Delete" to permanently remove a task
-- Validation: Shows alert if task input is empty
-- All list items, buttons, and inputs are created dynamically
-
-**App Walkthrough:**
-
-```
-User types: "Study JavaScript"
-            ↓ clicks Add
-[Study JavaScript] [Edit] [Delete]   ← Added to list
-
-User clicks Edit:
-[________________] [Save] [Delete]   ← Input field replaces text
-
-User types: "Study JavaScript DOM"
-            ↓ clicks Save
-[Study JavaScript DOM] [Edit] [Delete]  ← Updated in list
-
-User clicks Delete:
-                                        ← Item removed from DOM
-```
-
-**Key Code Concepts:**
-```js
-addBtn.addEventListener("click", function() {
-    let task = input.value;
-    if (task == "") { alert("Enter a task"); return; }
-
-    // Create DOM elements dynamically
-    let li = document.createElement("li");
-    let span = document.createElement("span");
-    let editBtn = document.createElement("button");
-    let deleteBtn = document.createElement("button");
-
-    span.innerText = task;
-    editBtn.innerText = "Edit";
-    editBtn.className = "edit";
-    deleteBtn.innerText = "Delete";
-    deleteBtn.className = "delete";
-
-    // Edit functionality — toggle between edit and save modes
-    editBtn.addEventListener("click", function() {
-        if (editBtn.innerText === "Edit") {
-            let inputField = document.createElement("input");
-            inputField.type = "text";
-            inputField.value = span.innerText;
-            li.replaceChild(inputField, span);   // swap span → input
-            editBtn.innerText = "Save";
-        } else {
-            let inputField = li.querySelector("input");
-            span.innerText = inputField.value;
-            li.replaceChild(span, inputField);   // swap input → span
-            editBtn.innerText = "Edit";
-        }
-    });
-
-    // Delete functionality
-    deleteBtn.addEventListener("click", function() {
-        li.remove();   // removes the entire list item
-    });
-
-    // Build the list item and append to list
-    li.appendChild(span);
-    li.appendChild(editBtn);
-    li.appendChild(deleteBtn);
-    taskList.appendChild(li);
-
-    input.value = "";  // clear input
-});
-```
-
----
-
-## 🔑 Key JavaScript Concepts
-
-| Concept | Used In |
-|---------|---------|
-| `document.createElement()` | Practical |
-| `appendChild()` | Practical |
-| `replaceChild()` | Practical (edit mode) |
-| `li.remove()` | Practical (delete) |
-| `li.querySelector()` | Practical |
-| `element.innerText` | Practical |
-| `element.className` | Practical |
-| `addEventListener('click')` | Practical |
-| Nested event listeners | Practical |
-| Input validation | Practical |
-| Toggle logic (Edit ↔ Save) | Practical |
-| DOM traversal | Practical |
-
----
-
-## 🖥️ How to Run
-
-1. Open `PRACTICAL/index.html` in any browser
-2. Type a task in the input box (e.g., "Complete Lab Assignment")
-3. Click **"Add"** — task appears in the list
-4. Click **"Edit"** next to any task — type a new name → click **"Save"**
-5. Click **"Delete"** — task is removed from the list
-
----
-
-## 📝 DOM Methods Reference
-
-| Method | Description |
-|--------|-------------|
-| `document.createElement(tag)` | Creates a new HTML element |
-| `parent.appendChild(child)` | Adds child element to parent |
-| `parent.replaceChild(new, old)` | Replaces one child with another |
-| `element.remove()` | Removes element from DOM |
-| `parent.querySelector(selector)` | Finds first matching child element |
-| `element.innerText` | Gets/sets text content |
-| `element.className` | Gets/sets CSS class name |
-
----
-
-## 👩‍💻 Developed By
-
-| Field | Details |
-|-------|---------|
-| **Name** | Samruddhi Kalbande |
-| **PRN** | 24070521278 |
-| **Institute** | SIT Nagpur |
-| **Subject** | JavaScript Lab |
+Conclusion : 
+The practical was completed successfully. DOM traversal and manipulation were implemented using JavaScript. A To-Do List was developed with Add, Edit and Delete features, and a Registration Form was created with user input validation and event handling.
