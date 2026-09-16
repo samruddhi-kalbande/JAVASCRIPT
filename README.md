@@ -27,6 +27,7 @@ Every practical experiment folder is self-contained with its source code (`HTML5
 | **05** | **Shopping Cart Calculator** | Higher-Order Array Functions (`map`, `filter`, `reduce`, `forEach`), Tiered Discounts | **Student Marks Management System** (`Math.min`, `Math.max`, `find()`, Badges) | [View pract 5 README](pract%205/README.md) |
 | **06** | **String Methods & Regular Expressions Tool** | String Methods (`split`, `match`, `replace`, `indexOf`), RegEx Flags (`g`, `i`), Text Extraction | **Authentication Portal & Student Information Extractor** | [View pract 6 README](pract%206/README.md) |
 | **07** | **Dynamic Interactive To-Do List** | DOM Node Creation & Deletion (`createElement`, `replaceChild`, `remove`), Inline Edit | **Event Handling Registration Form** (Dynamic Dates, `blur`, `focus`, `change`) | [View pract 7 README](pract%207/README.md) |
+| **09** | **Theme Preference & Web Storage API** | Web Storage API (`localStorage`, `sessionStorage`), JSON Serialization, Dynamic Theme Switching | **Seminar Schedule Planner** (HTML Table Spans, Alert Prompts, Local & Session Cache) | [View pract 9 README](pract%209/README.md) |
 
 ---
 
@@ -132,17 +133,26 @@ JAVASCRIPT/
 │   │   └── output.png
 │   └── README.md
 │
-└── pract 7/                            # Experiment 7: DOM Manipulation & Event Handling
-    ├── PRACTICAL/                      # Dynamic Interactive To-Do List
+├── pract 7/                            # Experiment 7: DOM Manipulation & Event Handling
+│   ├── PRACTICAL/                      # Dynamic Interactive To-Do List
+│   │   ├── index.html
+│   │   ├── script.js
+│   │   ├── style.css
+│   │   └── output.png
+│   ├── CASE STUDY/                     # Event-Driven Registration Form
+│   │   ├── index.html
+│   │   ├── script.js
+│   │   ├── style.css
+│   │   └── Screenshot 2026-09-07 215205.png
+│   └── README.md
+│
+└── pract 9/                            # Experiment 9: Web Storage API & State Persistence
+    ├── PRACTICAL/                      # Theme Preference (Light/Dark Switcher)
+    │   └── index.html
+    ├── CASE STUDY/                     # Seminar Schedule Planner & Web Storage
     │   ├── index.html
     │   ├── script.js
-    │   ├── style.css
-    │   └── output.png
-    ├── CASE STUDY/                     # Event-Driven Registration Form
-    │   ├── index.html
-    │   ├── script.js
-    │   ├── style.css
-    │   └── Screenshot 2026-09-07 215205.png
+    │   └── style.css
     └── README.md
 ```
 

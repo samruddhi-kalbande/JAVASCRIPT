@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Theme Preference</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            padding: 50px;
+            transition: 0.3s;
+        }
+
+        .dark {
+            background-color: #222;
+            color: white;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            border-radius: 4px;
+            border: 1px solid #888;
+        }
+
+        .dark button {
+            background-color: #333;
+            color: white;
+            border-color: #555;
+        }
+
+        .developer-info {
+            margin-top: 40px;
+            padding: 15px;
+            border-top: 1px solid #ddd;
+            font-size: 16px;
+        }
+
+        .dark .developer-info {
+            border-top: 1px solid #444;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Theme Preference</h2>
+
+    <button onclick="setTheme('light')">Light Theme</button>
+    <button onclick="setTheme('dark')">Dark Theme</button>
+    <button onclick="clearTheme()">Clear Preference</button>
+
+    <p id="message"></p>
+
+    <div class="developer-info">
+        <p><strong>Developed by:</strong> Samruddhi Kalbande</p>
+        <p><strong>PRN:</strong> 24070521278</p>
+    </div>
+
+    <script>
+
+
+        window.onload = function () {
+
+            // First check localStorage
+            let savedTheme = localStorage.getItem("theme");
+
+            if (savedTheme) {
+                setTheme(savedTheme);
+            }
+        };
+
+        function setTheme(theme) {
+
+            // Apply theme
+            if (theme === "dark") {
+                document.body.classList.add("dark");
+            } else {
+                document.body.classList.remove("dark");
+            }
+
+            // Save permanently
+            localStorage.setItem("theme", theme);
+
+            // Also save current session
+            sessionStorage.setItem("currentTheme", theme);
+
+            document.getElementById("message").innerText =
+                "Theme saved: " + theme;
+        }
+
+        function clearTheme() {
+
+            localStorage.removeItem("theme");
+            sessionStorage.removeItem("currentTheme");
+
+            document.body.classList.remove("dark");
+
+            document.getElementById("message").innerText =
+                "Theme preference cleared.";
+        }
+
+    </script>
+
+</body>
+</html>
