@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gym Admission Form - Experiment 8</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h2>Gym Admission Form</h2>
+
+        <form id="gymForm" novalidate>
+            <label for="name">Full Name</label>
+            <input type="text" id="name" placeholder="e.g. John Doe">
+            <span id="nameError" class="error"></span>
+
+            <label for="age">Age</label>
+            <input type="number" id="age" placeholder="e.g. 24">
+            <span id="ageError" class="error"></span>
+
+            <label for="email">Email Address</label>
+            <input type="email" id="email" placeholder="e.g. john@example.com">
+            <span id="emailError" class="error"></span>
+
+            <label for="mobile">Mobile Number</label>
+            <input type="text" id="mobile" placeholder="10-digit phone number">
+            <span id="mobileError" class="error"></span>
+
+            <label for="plan">Membership Plan</label>
+            <select id="plan">
+                <option value="">Select Plan</option>
+                <option value="Monthly">Monthly</option>
+                <option value="Quarterly">Quarterly</option>
+                <option value="Yearly">Yearly</option>
+            </select>
+            <span id="planError" class="error"></span>
+
+            <button type="submit">Submit Admission</button>
+
+            <p id="result" class="success"></p>
+        </form>
+
+        <div class="author-credits">
+            <p><strong>Developed By</strong></p>
+            <p>Samruddhi Kalbande</p>
+            <p>PRN: 24070521278</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

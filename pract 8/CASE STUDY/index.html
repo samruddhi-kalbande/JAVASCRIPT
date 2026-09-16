@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Gym Admission Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h2>Gym Admission Form</h2>
+
+        <form id="gymForm">
+
+            <table>
+
+                <tr>
+                    <th>Name</th>
+                    <th>Value</th>
+                </tr>
+
+                <tr>
+                    <td>Name</td>
+                    <td>
+                        <input type="text" id="name">
+                        <span id="nameError" class="error"></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Sex</td>
+                    <td>
+                        <label>
+                            <input type="radio" name="sex" value="Male">
+                            Male
+                        </label>
+                        <br>
+                        <label>
+                            <input type="radio" name="sex" value="Female">
+                            Female
+                        </label>
+                        <span id="sexError" class="error"></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Eye color</td>
+                    <td>
+                        <select id="eyeColor">
+                            <option value="">Select</option>
+                            <option value="green">green</option>
+                            <option value="blue">blue</option>
+                            <option value="brown">brown</option>
+                            <option value="black">black</option>
+                        </select>
+                        <span id="eyeError" class="error"></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Check all that apply</td>
+                    <td>
+                        <label>
+                            <input type="checkbox" id="height">
+                            Over 6 feet tall
+                        </label>
+                        <br>
+                        <label>
+                            <input type="checkbox" id="weight">
+                            Over 200 pounds
+                        </label>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan="2">
+                        Describe your athletic ability:
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan="2">
+                        <textarea id="ability"></textarea>
+                        <span id="abilityError" class="error"></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan="2" class="button-cell">
+                        <button type="submit">
+                            Enter my information
+                        </button>
+                    </td>
+                </tr>
+
+            </table>
+
+            <p id="result" class="success"></p>
+
+        <div class="author-credits" style="margin-top: 18px; text-align: center; font-size: 13px; color: #666; border-top: 1px dashed #d8a7c1; padding-top: 12px;">
+            <p><strong>Developed By:</strong> Samruddhi Kalbande | PRN: 24070521278</p>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
