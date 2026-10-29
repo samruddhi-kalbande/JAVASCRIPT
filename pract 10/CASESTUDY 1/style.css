@@ -1,0 +1,140 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fff0f5;
+    color: #4a2635;
+    padding: 30px 15px;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(220, 90, 140, 0.15);
+}
+
+h1 {
+    text-align: center;
+    color: #d63384;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #8c6476;
+    margin-bottom: 30px;
+}
+
+h2 {
+    color: #c2185b;
+    margin-bottom: 18px;
+}
+
+form {
+    background-color: #fff5f9;
+    padding: 25px;
+    border: 1px solid #f5c2d7;
+    border-radius: 12px;
+    margin-bottom: 25px;
+}
+
+input {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #e8a4c2;
+    border-radius: 7px;
+    background-color: #ffffff;
+    font-size: 15px;
+    outline: none;
+}
+
+input:focus {
+    border-color: #d63384;
+    box-shadow: 0 0 5px rgba(214, 51, 132, 0.25);
+}
+
+button {
+    background-color: #e75499;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 7px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #c2185b;
+}
+
+.json-section,
+.table-section {
+    margin-top: 25px;
+}
+
+pre {
+    background-color: #fff5f9;
+    border: 1px solid #f5c2d7;
+    border-radius: 8px;
+    padding: 15px;
+    min-height: 50px;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    color: #87375e;
+    font-size: 14px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: white;
+}
+
+th {
+    background-color: #e75499;
+    color: white;
+}
+
+th, td {
+    border: 1px solid #f2bfd5;
+    padding: 12px;
+    text-align: center;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #fff0f5;
+}
+
+tbody tr:hover {
+    background-color: #ffe0ed;
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 15px;
+    }
+
+    table {
+        font-size: 12px;
+    }
+
+    th, td {
+        padding: 7px 4px;
+    }
+
+    button {
+        width: 100%;
+    }
+}

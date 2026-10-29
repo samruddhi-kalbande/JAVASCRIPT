@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#fff5f8">
+    <title>Rakhi & Rose | Online Rakhi Store</title>
+    <style>
+        :root {
+            color-scheme: light;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #49313b;
+            background: #fff8fa;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            min-width: 320px;
+            margin: 0;
+            background:
+                radial-gradient(ellipse at 10% 6%, rgba(255, 223, 234, 0.65), transparent 30rem),
+                #fff8fa;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .top-note {
+            padding: 9px 16px;
+            background: #c84272;
+            color: #fff;
+            font-size: 12px;
+            font-weight: 700;
+            text-align: center;
+            letter-spacing: 0.02em;
+        }
+
+        .site-header {
+            border-bottom: 1px solid #f3dce5;
+            background: rgba(255, 255, 255, 0.94);
+        }
+
+        .header-inner {
+            display: flex;
+            width: min(1120px, calc(100% - 40px));
+            min-height: 76px;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            margin: 0 auto;
+        }
+
+        .brand {
+            color: #8d3157;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 22px;
+            font-weight: 700;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .brand span {
+            color: #d65783;
+        }
+
+        nav ul {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            gap: 5px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        nav a {
+            display: block;
+            padding: 9px 12px;
+            border-radius: 8px;
+            color: #715665;
+            font-size: 13px;
+            text-decoration: none;
+        }
+
+        nav a:hover,
+        nav a:focus-visible {
+            background: #fff0f5;
+            color: #b83867;
+        }
+
+        main {
+            width: min(1060px, calc(100% - 40px));
+            margin: 0 auto;
+        }
+
+        .hero {
+            display: grid;
+            min-height: 330px;
+            grid-template-columns: 1.1fr 0.9fr;
+            align-items: center;
+            gap: 32px;
+            margin: 34px 0 46px;
+            padding: clamp(28px, 6vw, 60px);
+            overflow: hidden;
+            border: 1px solid #f4dce6;
+            border-radius: 22px;
+            background: linear-gradient(120deg, #fff 10%, #ffedf3);
+            box-shadow: 0 14px 42px rgba(147, 61, 95, 0.09);
+        }
+
+        .eyebrow {
+            margin: 0 0 12px;
+            color: #bb4b75;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+
+        h1,
+        h2,
+        h3,
+        p {
+            margin-top: 0;
+        }
+
+        h1 {
+            margin-bottom: 15px;
+            color: #75304d;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: clamp(40px, 7vw, 62px);
+            letter-spacing: -0.045em;
+            line-height: 1.08;
+        }
+
+        .hero-copy {
+            max-width: 470px;
+            margin-bottom: 24px;
+            color: #765f6b;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        .shop-button {
+            display: inline-block;
+            padding: 12px 19px;
+            border-radius: 9px;
+            background: #c84272;
+            color: #fff;
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background-color 150ms ease, transform 150ms ease;
+        }
+
+        .shop-button:hover {
+            transform: translateY(-1px);
+            background: #a9325d;
+        }
+
+        .hero-photo {
+            width: 100%;
+            max-width: 390px;
+            justify-self: center;
+            margin: 0;
+            padding: 9px;
+            border: 1px solid #f1d2df;
+            border-radius: 15px;
+            background: #fff;
+            box-shadow: 0 12px 30px rgba(159, 51, 94, 0.12);
+        }
+
+        .hero-photo img {
+            display: block;
+            width: 100%;
+            height: 235px;
+            border-radius: 9px;
+            object-fit: cover;
+            object-position: center 45%;
+        }
+
+        .section-heading {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .section-heading h2 {
+            margin-bottom: 5px;
+            color: #75304d;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 30px;
+            letter-spacing: -0.025em;
+        }
+
+        .section-heading p:last-child {
+            margin-bottom: 0;
+            color: #846e7a;
+            font-size: 13px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 360px);
+            justify-content: center;
+            gap: 18px;
+        }
+
+        .other-stores {
+            margin: 38px 0 0;
+            padding: 26px;
+            border: 1px solid #f1dfe6;
+            border-radius: 16px;
+            background: #fff;
+            box-shadow: 0 7px 22px rgba(105, 55, 76, 0.045);
+        }
+
+        .store-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .store-card {
+            display: flex;
+            min-height: 105px;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            padding: 17px;
+            border: 1px solid #f4e3e9;
+            border-radius: 11px;
+            background: #fff9fb;
+        }
+
+        .store-card h3 {
+            margin: 0 0 5px;
+            color: #75304d;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 17px;
+        }
+
+        .store-card p {
+            margin: 0;
+            color: #846e7a;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .store-link {
+            flex: 0 0 auto;
+            padding: 9px 12px;
+            border-radius: 7px;
+            background: #c84272;
+            color: #fff;
+            font-size: 11px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .store-link:hover {
+            background: #a9325d;
+        }
+
+        .store-note {
+            margin: 15px 0 0;
+            color: #897582;
+            font-size: 11px;
+        }
+
+        .product-card {
+            overflow: hidden;
+            border: 1px solid #f1dfe6;
+            border-radius: 14px;
+            background: #fff;
+            box-shadow: 0 7px 22px rgba(105, 55, 76, 0.055);
+            transition: transform 160ms ease, box-shadow 160ms ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 13px 28px rgba(105, 55, 76, 0.1);
+        }
+
+        .product-art {
+            display: block;
+            height: 190px;
+            margin: 0;
+            overflow: hidden;
+            background: linear-gradient(145deg, #fff3f7, #fde4ed);
+        }
+
+        .product-art img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 45%;
+        }
+
+        .product-details {
+            padding: 16px;
+        }
+
+        .product-details h3 {
+            margin-bottom: 7px;
+            color: #603449;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 17px;
+        }
+
+        .product-details p {
+            min-height: 38px;
+            margin-bottom: 14px;
+            color: #816d78;
+            font-size: 12px;
+            line-height: 1.55;
+        }
+
+        .product-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .price {
+            color: #a9325d;
+            font-size: 15px;
+            font-weight: 800;
+        }
+
+        .buy-button {
+            padding: 8px 11px;
+            border: 1px solid #efcbd8;
+            border-radius: 7px;
+            background: #fff;
+            color: #ad3d67;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .buy-button:hover {
+            background: #fff0f5;
+        }
+
+        .cart-count {
+            color: #c84272;
+            font-weight: 800;
+        }
+
+        .cart-message {
+            min-height: 20px;
+            margin: 14px 0 0;
+            color: #a9325d;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .cart-panel[hidden] {
+            display: none;
+        }
+
+        .cart-panel {
+            margin-top: 22px;
+            padding: 22px;
+            border: 1px solid #f1d5e0;
+            border-radius: 14px;
+            background: #fff7fa;
+        }
+
+        .cart-panel h2 {
+            margin: 0;
+            color: #75304d;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 24px;
+        }
+
+        .cart-items {
+            margin: 12px 0 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 13px 0;
+            border-bottom: 1px solid #f1dfe6;
+        }
+
+        .cart-item-details {
+            display: grid;
+            gap: 4px;
+        }
+
+        .cart-item-name {
+            color: #603449;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .cart-item-quantity {
+            color: #846e7a;
+            font-size: 11px;
+        }
+
+        .cart-item-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .cart-item-subtotal {
+            color: #a9325d;
+            font-size: 13px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .remove-cart-item,
+        .close-cart {
+            min-height: 32px;
+            padding: 0 10px;
+            border: 1px solid #efcbd8;
+            border-radius: 7px;
+            background: #fff;
+            color: #ad3d67;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .remove-cart-item:hover,
+        .close-cart:hover {
+            background: #fff0f5;
+        }
+
+        .cart-empty {
+            margin: 14px 0;
+            color: #846e7a;
+            font-size: 13px;
+        }
+
+        .cart-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            padding-top: 16px;
+        }
+
+        .cart-total {
+            color: #603449;
+            font-size: 15px;
+            font-weight: 800;
+        }
+
+        .promise {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+            margin: 42px 0;
+            padding: 23px;
+            border: 1px solid #f1dfe6;
+            border-radius: 14px;
+            background: #fff;
+        }
+
+        .promise-item {
+            text-align: center;
+        }
+
+        .promise-item strong {
+            display: block;
+            margin-bottom: 4px;
+            color: #75304d;
+            font-size: 13px;
+        }
+
+        .promise-item span {
+            color: #846e7a;
+            font-size: 11px;
+        }
+
+        footer {
+            padding: 25px 20px;
+            background: #78304f;
+            color: #fbeaf0;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        @media (max-width: 740px) {
+            .header-inner {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 7px;
+                padding: 15px 0;
+            }
+
+            nav ul {
+                justify-content: flex-start;
+                margin-left: -10px;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 8px;
+                margin-top: 24px;
+            }
+
+            .hero-photo {
+                max-width: 360px;
+            }
+
+            .hero-photo img {
+                height: 210px;
+            }
+        }
+
+        @media (max-width: 560px) {
+            main {
+                width: min(100% - 28px, 1060px);
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .store-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .other-stores {
+                padding: 18px;
+            }
+
+            .product-art {
+                height: 210px;
+            }
+
+            .promise {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .section-heading {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-note">A little thread, a lifetime of love · Rakhi gifting made special</div>
+
+    <header class="site-header">
+        <div class="header-inner">
+            <a class="brand" href="#home">Rakhi <span>&amp;</span> Rose</a>
+            <nav aria-label="Main navigation">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#collection">Shop Rakhis</a></li>
+                    <li><a href="#other-stores">More stores</a></li>
+                    <li><a href="#promise">Our Promise</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#cart" id="cartLink" aria-controls="cart" aria-expanded="false">Cart (<span class="cart-count" id="cartCount" aria-live="polite">0</span>)</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="home">
+        <section class="hero" aria-labelledby="hero-title">
+            <div>
+                <p class="eyebrow">Made with love, tied with tradition</p>
+                <h1 id="hero-title">A special thread for your special bond.</h1>
+                <p class="hero-copy">Celebrate Raksha Bandhan with thoughtfully chosen rakhis for every kind of sibling. Find a little something to make their day feel extra special.</p>
+                <a class="shop-button" href="#collection">Explore the collection</a>
+            </div>
+            <figure class="hero-photo">
+                <img src="images/rakhi-silver-cc0.jpg" alt="A red-thread rakhi with a silver Om centerpiece displayed on a leaf">
+            </figure>
+        </section>
+
+        <section id="collection" aria-labelledby="collection-title">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">A thoughtful gift for every sibling</p>
+                    <h2 id="collection-title">The Rakhi Collection</h2>
+                    <p>Handpicked styles to celebrate your one-of-a-kind bond.</p>
+                </div>
+            </div>
+
+            <div class="product-grid">
+                <article class="product-card">
+                    <figure class="product-art">
+                        <img src="images/rakhi-silver-cc0.jpg" alt="Red and silver Om rakhi arranged on a leaf">
+                    </figure>
+                    <div class="product-details">
+                        <h3>Red &amp; Silver Om Rakhi</h3>
+                        <p>A bright red thread with a silver Om centerpiece and colorful beads.</p>
+                        <div class="product-bottom">
+                            <span class="price">₹199</span>
+                            <button class="buy-button" type="button" data-product-id="red-silver-om" data-product-name="Red &amp; Silver Om Rakhi" data-price="199">Add to cart</button>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+            <p class="cart-message" id="cartMessage" role="status" aria-live="polite"></p>
+
+            <section class="cart-panel" id="cart" aria-labelledby="cart-title" hidden>
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">YOUR SHOPPING BAG</p>
+                        <h2 id="cart-title">Your Cart</h2>
+                    </div>
+                </div>
+                <p class="cart-empty" id="cartEmpty">Your cart is empty. Add a Rakhi from the collection above.</p>
+                <ul class="cart-items" id="cartItems" aria-label="Items in your cart"></ul>
+                <div class="cart-footer">
+                    <span class="cart-total" id="cartTotal">Total: ₹0</span>
+                    <button class="close-cart" id="closeCart" type="button">Continue shopping</button>
+                </div>
+            </section>
+        </section>
+
+        <section class="other-stores" id="other-stores" aria-labelledby="other-stores-title">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">Explore more designs</p>
+                    <h2 id="other-stores-title">More Rakhi options</h2>
+                    <p>Browse Rakhi collections from other shopping websites.</p>
+                </div>
+            </div>
+            <div class="store-grid">
+                <article class="store-card">
+                    <div>
+                        <h3>Amazon</h3>
+                        <p>Designer, kids' and family Rakhi sets</p>
+                    </div>
+                    <a class="store-link" href="https://www.amazon.in/s?k=rakhi+sets" target="_blank" rel="noopener noreferrer">Browse Rakhis</a>
+                </article>
+                <article class="store-card">
+                    <div>
+                        <h3>Flipkart</h3>
+                        <p>Traditional Rakhis and festive combos</p>
+                    </div>
+                    <a class="store-link" href="https://www.flipkart.com/search?q=rakhi+sets" target="_blank" rel="noopener noreferrer">Browse Rakhis</a>
+                </article>
+                <article class="store-card">
+                    <div>
+                        <h3>FNP</h3>
+                        <p>Premium Rakhis, hampers and gifts</p>
+                    </div>
+                    <a class="store-link" href="https://www.fnp.com/rakhi-lp" target="_blank" rel="noopener noreferrer">Browse Rakhis</a>
+                </article>
+                <article class="store-card">
+                    <div>
+                        <h3>Meesho</h3>
+                        <p>Rakhi combos and budget-friendly sets</p>
+                    </div>
+                    <a class="store-link" href="https://www.meesho.com/search?q=rakhi%20set" target="_blank" rel="noopener noreferrer">Browse Rakhis</a>
+                </article>
+            </div>
+            <p class="store-note">External links open the retailer's website. Prices, delivery, and availability are managed by each store.</p>
+        </section>
+
+        <section class="promise" id="promise" aria-label="Our store promise">
+            <div class="promise-item">
+                <strong>Carefully chosen</strong>
+                <span>Thoughtful designs for a special celebration</span>
+            </div>
+            <div class="promise-item">
+                <strong>Gift-ready feeling</strong>
+                <span>Make your Rakhi surprise feel extra lovely</span>
+            </div>
+            <div class="promise-item">
+                <strong>Made for every bond</strong>
+                <span>A little reminder of love and togetherness</span>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact">
+        <p>Rakhi &amp; Rose · Celebrate the bond, share the love.</p>
+    </footer>
+    <script>
+        const cartCount = document.querySelector("#cartCount");
+        const cartMessage = document.querySelector("#cartMessage");
+        const cartLink = document.querySelector("#cartLink");
+        const cartPanel = document.querySelector("#cart");
+        const cartItemsList = document.querySelector("#cartItems");
+        const cartEmpty = document.querySelector("#cartEmpty");
+        const cartTotal = document.querySelector("#cartTotal");
+        const cart = new Map();
+
+        function updateCart() {
+            const items = Array.from(cart.values());
+            const itemCount = items.reduce((count, item) => count + item.quantity, 0);
+            const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+            cartCount.textContent = itemCount;
+            cartTotal.textContent = `Total: ₹${total}`;
+            cartEmpty.hidden = items.length > 0;
+            cartItemsList.replaceChildren();
+
+            items.forEach((item) => {
+                const row = document.createElement("li");
+                row.className = "cart-item";
+
+                const details = document.createElement("div");
+                details.className = "cart-item-details";
+                const name = document.createElement("span");
+                name.className = "cart-item-name";
+                name.textContent = item.name;
+                const quantity = document.createElement("span");
+                quantity.className = "cart-item-quantity";
+                quantity.textContent = `₹${item.price} each · Quantity: ${item.quantity}`;
+                details.append(name, quantity);
+
+                const actions = document.createElement("div");
+                actions.className = "cart-item-actions";
+                const subtotal = document.createElement("span");
+                subtotal.className = "cart-item-subtotal";
+                subtotal.textContent = `₹${item.price * item.quantity}`;
+                const remove = document.createElement("button");
+                remove.className = "remove-cart-item";
+                remove.type = "button";
+                remove.dataset.productId = item.id;
+                remove.textContent = "Remove";
+                actions.append(subtotal, remove);
+
+                row.append(details, actions);
+                cartItemsList.append(row);
+            });
+        }
+
+        cartLink.addEventListener("click", (event) => {
+            event.preventDefault();
+            cartPanel.hidden = false;
+            cartLink.setAttribute("aria-expanded", "true");
+            updateCart();
+            cartPanel.scrollIntoView({ behavior: "smooth", block: "center" });
+        });
+
+        document.querySelector("#closeCart").addEventListener("click", () => {
+            cartPanel.hidden = true;
+            cartLink.setAttribute("aria-expanded", "false");
+            cartLink.focus();
+        });
+
+        document.querySelectorAll(".buy-button").forEach((button) => {
+            button.addEventListener("click", () => {
+                const id = button.dataset.productId;
+                const item = cart.get(id);
+                if (item) {
+                    item.quantity += 1;
+                } else {
+                    cart.set(id, {
+                        id,
+                        name: button.dataset.productName,
+                        price: Number(button.dataset.price),
+                        quantity: 1
+                    });
+                }
+
+                updateCart();
+                cartMessage.textContent = `${button.dataset.productName} added to cart.`;
+            });
+        });
+
+        cartItemsList.addEventListener("click", (event) => {
+            const removeButton = event.target.closest(".remove-cart-item");
+            if (!removeButton) {
+                return;
+            }
+            cart.delete(removeButton.dataset.productId);
+            updateCart();
+            cartMessage.textContent = "Item removed from your cart.";
+        });
+    </script>
+</body>
+</html>

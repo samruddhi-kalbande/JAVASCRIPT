@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Online Food Order Dashboard</title>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fff5f8;
+            margin: 0;
+            padding: 30px;
+        }
+
+        .container {
+            width: 90%;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #ddd;
+        }
+
+        h1 {
+            text-align: center;
+            color: #d63384;
+        }
+
+        #viewOrders {
+            display: block;
+            margin: 20px auto;
+            padding: 12px 25px;
+            background-color: #d63384;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        #viewOrders:hover {
+            background-color: #b52b70;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th {
+            background-color: #d63384;
+            color: white;
+            padding: 12px;
+        }
+
+        td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        tr:nth-child(even) {
+            background-color: #fff0f5;
+        }
+
+        #result {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        #error {
+            color: red;
+            text-align: center;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Online Food Order Dashboard</h1>
+
+    <button id="viewOrders">View Orders</button>
+
+    <table id="orderTable">
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Customer Name</th>
+                <th>Food Item</th>
+                <th>Quantity</th>
+                <th>Total Amount</th>
+                <th>Order Status</th>
+            </tr>
+        </thead>
+
+        <tbody id="orderBody">
+        </tbody>
+    </table>
+
+    <div id="result"></div>
+
+    <div id="error"></div>
+
+</div>
+
+<script>
+
+    $("#viewOrders").click(function() {
+
+        $("#orderBody").empty();
+        $("#result").empty();
+        $("#error").empty();
+
+        $.getJSON("orders.json")
+
+            .done(function(data) {
+
+                let totalSales = 0;
+                let totalOrders = 0;
+
+                $.each(data, function(index, order) {
+
+                    let row = $("<tr>");
+
+                    row.append($("<td>").text(order.orderId));
+                    row.append($("<td>").text(order.customerName));
+                    row.append($("<td>").text(order.foodItem));
+                    row.append($("<td>").text(order.quantity));
+                    row.append($("<td>").text("₹" + order.totalAmount));
+                    row.append($("<td>").text(order.orderStatus));
+
+                    $("#orderBody").append(row);
+
+                    totalOrders++;
+
+                    totalSales += Number(order.totalAmount);
+                });
+
+                $("#result").html(
+                    "Total Number of Orders: " + totalOrders +
+                    "<br>Total Sales Amount: ₹" + totalSales
+                );
+
+            })
+
+            .fail(function() {
+
+                $("#error").text(
+                    "Unable to load orders.json. Please check the file."
+                );
+
+            });
+
+    });
+
+</script>
+
+</body>
+</html>

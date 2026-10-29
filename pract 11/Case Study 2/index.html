@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Music Concert Registration</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ffe4f1 0%, #fff6fb 100%);
+            margin: 0;
+            padding: 0;
+            color: #4d2c3d;
+        }
+
+        .container {
+            width: 500px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 0 12px rgba(214, 87, 149, 0.25);
+            border: 1px solid #f5c7dc;
+        }
+
+        h1 {
+            text-align: center;
+            color: #c2185b;
+        }
+
+        label {
+            display: block;
+            margin-top: 12px;
+            font-weight: bold;
+            color: #7a3559;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 9px;
+            margin-top: 5px;
+            box-sizing: border-box;
+            border: 1px solid #f3bfd6;
+            border-radius: 6px;
+            background-color: #fffafc;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #ec4899;
+            box-shadow: 0 0 0 2px rgba(236, 72, 153, 0.15);
+        }
+
+        input[type="radio"],
+        input[type="checkbox"] {
+            width: auto;
+        }
+
+        .option {
+            margin-top: 8px;
+            color: #5a3348;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            background: linear-gradient(135deg, #ec4899, #f472b6);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #db2777, #ec4899);
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Online Music Concert Registration</h1>
+
+    <form id="concertForm">
+
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+        <label for="phone">Mobile Number:</label>
+        <input type="tel" id="phone" name="phone" placeholder="Enter mobile number" required>
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" min="16" max="60" required>
+
+        <label for="city">City:</label>
+        <input type="text" id="city" name="city" placeholder="Enter your city" required>
+
+        <label for="concert">Select Concert:</label>
+        <select id="concert" name="concert" required>
+            <option value="">Select Concert</option>
+            <option value="Bollywood">Bollywood Night</option>
+            <option value="Rock">Rock Concert</option>
+            <option value="EDM">EDM Night</option>
+            <option value="Classical">Classical Music Night</option>
+        </select>
+
+        <label for="date">Concert Date:</label>
+        <input type="date" id="date" name="date" required>
+
+        <label>Preferred Music Genre:</label>
+
+        <div class="option">
+            <input type="radio" name="genre" value="Bollywood" required>
+            Bollywood
+        </div>
+
+        <div class="option">
+            <input type="radio" name="genre" value="Rock">
+            Rock
+        </div>
+
+        <div class="option">
+            <input type="radio" name="genre" value="Pop">
+            Pop
+        </div>
+
+        <div class="option">
+            <input type="radio" name="genre" value="Classical">
+            Classical
+        </div>
+
+        <label for="tickets">Number of Tickets:</label>
+        <input type="number" id="tickets" name="tickets" min="1" max="10" required>
+
+        <label for="payment">Payment Method:</label>
+        <select id="payment" name="payment" required>
+            <option value="">Select Payment Method</option>
+            <option value="UPI">UPI</option>
+            <option value="Card">Credit/Debit Card</option>
+            <option value="NetBanking">Net Banking</option>
+        </select>
+
+        <label for="request">Special Request:</label>
+        <textarea id="request" name="request" rows="4" placeholder="Enter your special request"></textarea>
+
+        <div class="option">
+            <input type="checkbox" id="terms" name="terms" required>
+            I agree to the terms and conditions
+        </div>
+
+        <button type="submit">Register for Concert</button>
+
+    </form>
+
+</div>
+
+<script>
+    const form = document.getElementById('concertForm');
+
+    form.addEventListener('focusin', function (event) {
+        const field = event.target;
+        if (field.tagName === 'INPUT' || field.tagName === 'SELECT' || field.tagName === 'TEXTAREA') {
+            field.style.border = '2px solid #ec4899';
+            field.style.backgroundColor = '#fff1f7';
+        }
+    });
+
+    form.addEventListener('focusout', function (event) {
+        const field = event.target;
+        if (field.tagName === 'INPUT' || field.tagName === 'SELECT' || field.tagName === 'TEXTAREA') {
+            field.style.border = '1px solid #f3bfd6';
+            field.style.backgroundColor = '#fffafc';
+        }
+    });
+
+    form.addEventListener('change', function (event) {
+        const field = event.target;
+        if (field.name === 'concert' || field.name === 'payment' || field.name === 'genre') {
+            console.log('Selection changed:', field.name, field.value);
+        }
+    });
+
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+
+        localStorage.setItem('concertRegistration', JSON.stringify(data));
+        sessionStorage.setItem('concertSessionRegistration', JSON.stringify(data));
+
+        alert('Concert registration saved successfully!');
+        form.reset();
+    });
+</script>
+
+</body>
+</html>

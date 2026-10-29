@@ -1,0 +1,127 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Management</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Employee Management</h1>
+        <p class="subtitle">Manage employee details using JavaScript and JSON</p>
+
+        <form id="employeeForm">
+            <h2>Add Employee</h2>
+
+            <input type="text" id="empId" placeholder="Employee ID" required>
+            <input type="text" id="empName" placeholder="Employee Name" required>
+            <input type="text" id="department" placeholder="Department" required>
+            <input type="number" id="salary" placeholder="Salary" min="0" required>
+
+            <button type="submit">Add Employee</button>
+        </form>
+
+        <div class="json-section">
+            <h2>JSON Data</h2>
+            <pre id="jsonData">New employee data will appear here.</pre>
+        </div>
+
+        <div class="table-section">
+            <h2>Employee Records</h2>
+
+            <button type="button" id="loadBtn">Load Employees</button>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Employee ID</th>
+                        <th>Name</th>
+                        <th>Department</th>
+                        <th>Salary</th>
+                    </tr>
+                </thead>
+                <tbody id="employeeTable">
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        let employees = [];
+        let newEmployees = [];
+
+        const form = document.getElementById("employeeForm");
+        const table = document.getElementById("employeeTable");
+        const jsonData = document.getElementById("jsonData");
+
+        form.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const employee = {
+                id: document.getElementById("empId").value,
+                name: document.getElementById("empName").value,
+                department: document.getElementById("department").value,
+                salary: Number(document.getElementById("salary").value)
+            };
+
+            newEmployees.push(employee);
+
+            jsonData.textContent = JSON.stringify(employee, null, 2);
+
+            displayEmployees([...employees, ...newEmployees]);
+
+            form.reset();
+        });
+
+        function displayEmployees(data) {
+            table.innerHTML = "";
+
+            data.forEach(function(emp) {
+                const row = document.createElement("tr");
+
+                const id = document.createElement("td");
+                id.textContent = emp.id;
+
+                const name = document.createElement("td");
+                name.textContent = emp.name;
+
+                const department = document.createElement("td");
+                department.textContent = emp.department;
+
+                const salary = document.createElement("td");
+                salary.textContent = emp.salary;
+
+                row.appendChild(id);
+                row.appendChild(name);
+                row.appendChild(department);
+                row.appendChild(salary);
+
+                table.appendChild(row);
+            });
+        }
+
+        function loadEmployees() {
+            fetch("employees.json")
+                .then(function(response) {
+                    if (!response.ok) {
+                        throw new Error("Could not load employees.json");
+                    }
+                    return response.json();
+                })
+                .then(function(data) {
+                    employees = data;
+                    displayEmployees([...employees, ...newEmployees]);
+                })
+                .catch(function(error) {
+                    alert(error.message);
+                });
+        }
+
+        document.getElementById("loadBtn").addEventListener("click", loadEmployees);
+    </script>
+
+</body>
+</html>

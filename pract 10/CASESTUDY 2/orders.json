@@ -1,0 +1,42 @@
+[
+    {
+        "orderId": "O101",
+        "customerName": "Rahul Sharma",
+        "foodItem": "Pizza",
+        "quantity": 2,
+        "totalAmount": 500,
+        "orderStatus": "Preparing"
+    },
+    {
+        "orderId": "O102",
+        "customerName": "Priya Patil",
+        "foodItem": "Burger",
+        "quantity": 1,
+        "totalAmount": 250,
+        "orderStatus": "Ready"
+    },
+    {
+        "orderId": "O103",
+        "customerName": "Amit Joshi",
+        "foodItem": "Biryani",
+        "quantity": 2,
+        "totalAmount": 600,
+        "orderStatus": "Delivered"
+    },
+    {
+        "orderId": "O104",
+        "customerName": "Sneha Kulkarni",
+        "foodItem": "Pasta",
+        "quantity": 1,
+        "totalAmount": 350,
+        "orderStatus": "Preparing"
+    },
+    {
+        "orderId": "O105",
+        "customerName": "Rohan Deshmukh",
+        "foodItem": "Sandwich",
+        "quantity": 3,
+        "totalAmount": 450,
+        "orderStatus": "Delivered"
+    }
+]

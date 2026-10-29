@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Scheduler</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="container">
+        <header class="page-header">
+            <div>
+                <h1>Class Scheduler</h1>
+                <p>Keep track of your classes, one day at a time.</p>
+            </div>
+            <div class="clock"><span class="live-dot"></span><span id="clock">--:--:--</span></div>
+        </header>
+
+        <section class="schedule-card" aria-labelledby="scheduleTitle">
+            <div class="schedule-header">
+                <div>
+                    <h2 id="scheduleTitle">My schedule</h2>
+                    <p id="selectedDate"></p>
+                </div>
+                <div class="day-buttons">
+                    <button id="previousDay" type="button" aria-label="Previous day">‹</button>
+                    <button id="todayButton" type="button">Today</button>
+                    <button id="nextDay" type="button" aria-label="Next day">›</button>
+                </div>
+            </div>
+            <p class="up-next" id="upNext" aria-live="polite"></p>
+            <div id="scheduleList" class="schedule-list" aria-live="polite"></div>
+        </section>
+
+        <section class="add-card" aria-labelledby="addTitle">
+            <h2 id="addTitle">Add a class</h2>
+            <form id="classForm">
+                <label>Class name<input name="subject" type="text" placeholder="e.g. Biology" maxlength="50" required></label>
+                <label>Room<input name="room" type="text" placeholder="e.g. Room 204" maxlength="30" required></label>
+                <label>Date<input name="date" id="classDate" type="date" required></label>
+                <label>Starts<input name="start" type="time" required></label>
+                <label>Ends<input name="end" type="time" required></label>
+                <button class="add-button" type="submit">Add class</button>
+            </form>
+            <p class="message" id="message" role="status"></p>
+        </section>
+        <footer>Class times update automatically every second.</footer>
+    </main>
+    <script type="module" src="app.js"></script>
+</body>
+</html>

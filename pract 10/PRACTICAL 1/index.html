@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Load JSON using Fetch</title>
+    <style>
+        table { width: 70%;
+            border-collapse: collapse; 
+            margin-top: 20px; }
+        th, td { border: 1px solid black; 
+            padding: 10px; 
+            text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <h2>Student Details using fetch()</h2>
+
+    <form id="studentForm">
+        <input id="name" placeholder="Student name" required>
+        <input id="department" placeholder="Department" required>
+        <input id="marks" type="number" placeholder="Marks" min="0" max="100" required>
+        <button type="submit">Save Student</button>
+    </form>
+
+    <p id="message"></p>
+    <button onclick="loadStudents()">Load Students</button>
+    <table id="studentTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Department</th>
+                <th>Marks</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+        async function loadStudents() {
+            const response = await fetch('/api/students');
+            const students = await response.json();
+            const tableBody = document.querySelector('#studentTable tbody');
+            tableBody.innerHTML = '';
+
+            students.forEach(student => {
+                const row = document.createElement('tr');
+                [student.id, student.name, student.department, student.marks].forEach(value => {
+                    const cell = document.createElement('td');
+                    cell.textContent = value;
+                    row.appendChild(cell);
+                });
+                tableBody.appendChild(row);
+            });
+        }
+
+        document.querySelector('#studentForm').addEventListener('submit', async event => {
+            event.preventDefault();
+            const student = {
+                name: document.querySelector('#name').value.trim(),
+                department: document.querySelector('#department').value.trim(),
+                marks: Number(document.querySelector('#marks').value)
+            };
+
+            const response = await fetch('/api/students', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(student)
+            });
+            const result = await response.json();
+            document.querySelector('#message').textContent = result.error || 'Student saved.';
+            if (response.ok) {
+                event.target.reset();
+                loadStudents();
+            }
+        });
+
+        loadStudents();
+    </script>
+</body>
+</html>

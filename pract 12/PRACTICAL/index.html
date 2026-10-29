@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Task Manager</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Live Task Manager</h1>
+        <p id="clock"></p>
+
+        <form id="taskForm">
+            <input type="text" id="taskInput" placeholder="Enter a task" required>
+            <button type="submit">Add Task</button>
+        </form>
+
+        <div class="stats">
+            <p>Total Tasks: <span id="total">0</span></p>
+            <p>Completed: <span id="completed">0</span></p>
+        </div>
+
+        <h2>My Tasks</h2>
+        <ul id="taskList"></ul>
+
+        <hr>
+
+        <h2>Latest Posts (AJAX)</h2>
+        <button id="loadPosts">Load Posts</button>
+        <p id="status"></p>
+        <div id="posts"></div>
+    </div>
+
+</body>
+</html>

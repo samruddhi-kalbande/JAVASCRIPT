@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#101c39">
+    <title>Smart India Hackathon | Innovation Starts Here</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #f5f7fc;
+            color: #25304a;
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.65;
+        }
+
+        .site-header {
+            background: #101c39;
+            color: #fff;
+        }
+
+        .header-inner {
+            display: flex;
+            width: min(1100px, calc(100% - 40px));
+            min-height: 76px;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            margin: 0 auto;
+        }
+
+        .brand {
+            color: #fff;
+            font-size: 17px;
+            font-weight: 800;
+            letter-spacing: 0.02em;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .brand span {
+            color: #ffbd59;
+        }
+
+        nav ul {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            gap: 6px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        nav a {
+            display: block;
+            padding: 9px 11px;
+            border-radius: 7px;
+            color: #e7ebf6;
+            font-size: 13px;
+            text-decoration: none;
+        }
+
+        nav a:hover,
+        nav a:focus-visible {
+            background: #263758;
+            color: #ffcf80;
+        }
+
+        main {
+            width: min(1000px, calc(100% - 40px));
+            margin: 0 auto;
+        }
+
+        .hero {
+            position: relative;
+            overflow: hidden;
+            margin: 34px 0 22px;
+            padding: clamp(30px, 7vw, 66px);
+            border-radius: 20px;
+            background: linear-gradient(125deg, #17284c, #294b85);
+            color: #fff;
+        }
+
+        .hero::after {
+            position: absolute;
+            top: -110px;
+            right: -70px;
+            width: 330px;
+            height: 330px;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 50%;
+            box-shadow: 0 0 0 38px rgba(255, 255, 255, 0.04), 0 0 0 76px rgba(255, 255, 255, 0.035);
+            content: "";
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 650px;
+        }
+
+        .hero-label {
+            margin: 0 0 12px;
+            color: #ffcf80;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            margin: 0 0 14px;
+            font-size: clamp(36px, 7vw, 62px);
+            letter-spacing: -0.045em;
+            line-height: 1.08;
+        }
+
+        .hero p:last-child {
+            max-width: 590px;
+            margin: 0;
+            color: #e0e8f7;
+            font-size: 17px;
+        }
+
+        .content-card {
+            margin: 18px 0;
+            padding: clamp(22px, 4vw, 34px);
+            border: 1px solid #e5eaf3;
+            border-radius: 14px;
+            background: #fff;
+            box-shadow: 0 8px 25px rgba(28, 44, 78, 0.045);
+            scroll-margin-top: 20px;
+        }
+
+        h2 {
+            margin: 0 0 12px;
+            color: #17284c;
+            font-size: 24px;
+            letter-spacing: -0.025em;
+        }
+
+        h3 {
+            margin: 0 0 7px;
+            color: #294b85;
+            font-size: 16px;
+        }
+
+        p {
+            margin: 0 0 13px;
+        }
+
+        p:last-child {
+            margin-bottom: 0;
+        }
+
+        .highlight {
+            color: #b35c12;
+            font-weight: 700;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
+            margin-top: 18px;
+        }
+
+        .feature {
+            padding: 17px;
+            border-radius: 10px;
+            background: #f4f7fd;
+        }
+
+        .feature p {
+            margin: 0;
+            color: #637089;
+            font-size: 13px;
+        }
+
+        .callout {
+            padding: 17px 19px;
+            border-left: 4px solid #ffbd59;
+            border-radius: 0 9px 9px 0;
+            background: #fff8eb;
+        }
+
+        .callout p {
+            margin: 0;
+        }
+
+        .site-footer {
+            margin-top: 28px;
+            padding: 24px 20px;
+            background: #101c39;
+            color: #cdd6e8;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        .site-footer p {
+            margin: 0;
+        }
+
+        @media (max-width: 760px) {
+            .header-inner {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 8px;
+                padding: 16px 0;
+            }
+
+            nav ul {
+                justify-content: flex-start;
+                margin-left: -10px;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-inner">
+            <a class="brand" href="#home"><span>SIH</span> · Smart India Hackathon</a>
+            <nav aria-label="Main navigation">
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#challenges">Challenges</a></li>
+                    <li><a href="#achievements">Achievements</a></li>
+                    <li><a href="#placements">Placements</a></li>
+                    <li><a href="#resources">Resources</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="home">
+        <section class="hero" aria-labelledby="page-title">
+            <div class="hero-content">
+                <p class="hero-label">Imagine · Innovate · Implement</p>
+                <h1 id="page-title">Smart India Hackathon</h1>
+                <p>A nationwide platform where student innovators work together to develop practical solutions for real-world challenges.</p>
+            </div>
+        </section>
+
+        <section class="content-card" id="about" aria-labelledby="about-title">
+            <h2 id="about-title">About the Hackathon</h2>
+            <p>
+                <font color="#b35c12"><strong>Smart India Hackathon (SIH)</strong></font>
+                is a national initiative that encourages students to think creatively and apply technology to important problems.
+                It is organized by the Ministry of Education's Innovation Cell with the All India Council for Technical Education (AICTE)
+                and participating partners.
+            </p>
+            <p>
+                Students form teams, study a selected problem statement, and collaborate on a solution.
+                <br>
+                The experience brings together <span class="highlight">teamwork, problem-solving, and innovation.</span>
+            </p>
+            <hr>
+            <p>SIH includes software and hardware innovation tracks, giving teams different ways to turn ideas into useful prototypes.</p>
+        </section>
+
+        <section class="content-card" id="challenges" aria-labelledby="challenges-title">
+            <h2 id="challenges-title">Challenges and Innovation</h2>
+            <p>Problem statements are contributed by public and private organizations. Teams explore the needs behind each challenge and present a thoughtful, technology-enabled response.</p>
+            <div class="feature-grid">
+                <article class="feature">
+                    <h3>Understand</h3>
+                    <p>Research the problem, its users, and the real-world context.</p>
+                </article>
+                <article class="feature">
+                    <h3>Collaborate</h3>
+                    <p>Bring different skills together and build as a team.</p>
+                </article>
+                <article class="feature">
+                    <h3>Create</h3>
+                    <p>Design, develop, and demonstrate a proposed solution.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="content-card" id="achievements" aria-labelledby="achievements-title">
+            <h2 id="achievements-title">Achievements and Impact</h2>
+            <p>SIH gives students an opportunity to present ideas, learn from mentors, and gain experience working on challenges beyond the classroom.</p>
+            <div class="callout">
+                <p><strong>Every strong solution starts with a team willing to ask questions, test ideas, and keep improving.</strong></p>
+            </div>
+        </section>
+
+        <section class="content-card" id="placements" aria-labelledby="placements-title">
+            <h2 id="placements-title">Skills and Career Opportunities</h2>
+            <p>Participation can help students build practical skills valued across many fields. The hackathon is a learning and innovation experience; it does not guarantee a placement or job.</p>
+            <p><span class="highlight">Skills you can practice:</span> communication, project planning, coding, design thinking, teamwork, and presenting your work.</p>
+        </section>
+
+        <section class="content-card" id="resources" aria-labelledby="resources-title">
+            <h2 id="resources-title">Learn More</h2>
+            <p>For current editions, eligibility, dates, and official announcements, visit the <a href="https://www.sih.gov.in/" target="_blank" rel="noopener noreferrer">Smart India Hackathon official website</a>.</p>
+            <p>Students should also check announcements from their institute's SIH coordinator for participation details.</p>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>Smart India Hackathon · Ideas into impact through collaboration.</p>
+    </footer>
+</body>
+</html>
