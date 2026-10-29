@@ -195,7 +195,6 @@ JAVASCRIPT/
 │   ├── CASESTUDY 2/                    # Online Food Order Dashboard
 │   │   ├── index.html
 │   │   └── orders.json
-│   ├── README.md
 │   └── README.pdf
 │
 ├── pract 11/                           # Experiment 11 (VA 11): Timers, ES6 Modules & Scheduler
@@ -210,7 +209,6 @@ JAVASCRIPT/
 │   │   └── index.html
 │   ├── Case Study 3/                   # Nagpur City Showcase & Marquee Ticker
 │   │   └── index.html
-│   ├── README.md
 │   └── README.pdf
 │
 └── pract 12/                           # Experiment 12 (VA 12): Real-Time Web App & AJAX
@@ -224,7 +222,6 @@ JAVASCRIPT/
     │   ├── images/
     │   │   └── rakhi-silver-cc0.jpg
     │   └── index.html
-    ├── README.md
     └── README.pdf
 ```
 
